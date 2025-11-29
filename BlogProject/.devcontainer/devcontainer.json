@@ -1,0 +1,11 @@
+{
+	"name": "Django Dev Container",
+	"dockerComposeFile": "docker-compose.yml",
+	"service": "backend",
+	"workspaceFolder": "/app",
+    "customizations" : {
+      "jetbrains" : {
+        "backend" : "PyCharm"
+      }
+    },
+}

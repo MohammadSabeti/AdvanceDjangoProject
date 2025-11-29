@@ -3,31 +3,27 @@
   <component name="FacetManager">
     <facet type="django" name="Django">
       <configuration>
-        <option name="rootFolder" value="$MODULE_DIR$/BlogProject" />
+        <option name="rootFolder" value="$MODULE_DIR$" />
         <option name="settingsModule" value="core/settings.py" />
-        <option name="manageScript" value="$MODULE_DIR$/BlogProject/manage.py" />
+        <option name="manageScript" value="manage.py" />
         <option name="environment" value="&lt;map/&gt;" />
         <option name="doNotUseTestRunner" value="false" />
-        <option name="trackFilePattern" value="migrations" />
+        <option name="trackFilePattern" value="" />
       </configuration>
     </facet>
   </component>
   <component name="NewModuleRootManager">
     <content url="file://$MODULE_DIR$">
-      <sourceFolder url="file://$MODULE_DIR$/BlogProject" isTestSource="false" />
-      <excludeFolder url="file://$MODULE_DIR$/BlogProject/.venv" />
+      <excludeFolder url="file://$MODULE_DIR$/.venv" />
     </content>
-    <orderEntry type="jdk" jdkName="Remote Python Docker Compose (backend)" jdkType="Python SDK" />
+    <orderEntry type="jdk" jdkName="Remote Python 3.12.12 Docker Compose (backend)" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
   </component>
-  <component name="PyDocumentationSettings">
-    <option name="format" value="GOOGLE" />
-    <option name="myDocStringFormat" value="Google" />
-  </component>
   <component name="TemplatesService">
+    <option name="TEMPLATE_CONFIGURATION" value="Django" />
     <option name="TEMPLATE_FOLDERS">
       <list>
-        <option value="$MODULE_DIR$/BlogProject/templates" />
+        <option value="$MODULE_DIR$/templates" />
       </list>
     </option>
   </component>
