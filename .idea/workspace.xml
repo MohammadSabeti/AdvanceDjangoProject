@@ -4,13 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3ec5e726-6c18-4f7f-8cf6-64d7d25b3359" name="Changes" comment="feat: set up initial project structure&#10;&#10;- Create 'accounts' and 'blog' Django apps&#10;- Add Dockerfile and docker-compose.yml&#10;- Configure containerized development environment">
-      <change afterPath="$PROJECT_DIR$/BlogProject/accounts/signals.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BlogProject/accounts/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/BlogProject/accounts/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BlogProject/accounts/apps.py" beforeDir="false" afterPath="$PROJECT_DIR$/BlogProject/accounts/apps.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BlogProject/accounts/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/BlogProject/accounts/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BlogProject/accounts/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/BlogProject/accounts/urls.py" afterDir="false" />
+    <list default="true" id="3ec5e726-6c18-4f7f-8cf6-64d7d25b3359" name="Changes" comment="feat(accounts): implement custom user model with email authentication and profile&#10;&#10;- Replace default User with email-based AbstractBaseUser&#10;- Add Profile model linked to User via OneToOne &#10;- Configure admin panel for User and Profile&#10;- Add post_save signal to auto-create Profile on user registration">
       <change beforePath="$PROJECT_DIR$/BlogProject/blog/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/BlogProject/blog/admin.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BlogProject/blog/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/BlogProject/blog/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BlogProject/core/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/BlogProject/core/settings.py" afterDir="false" />
@@ -139,7 +133,7 @@
       <workItem from="1764424378609" duration="2005000" />
       <workItem from="1764426509380" duration="13190000" />
       <workItem from="1764503229828" duration="2170000" />
-      <workItem from="1764521861935" duration="6486000" />
+      <workItem from="1764521861935" duration="6916000" />
     </task>
     <task id="LOCAL‎−۰۰۰۰۱" summary="feat: set up initial project structure&#10;&#10;- Create 'accounts' and 'blog' Django apps&#10;- Add Dockerfile and docker-compose.yml&#10;- Configure containerized development environment">
       <option name="closed" value="true" />
@@ -148,7 +142,14 @@
       <option name="presentableId" value="LOCAL‎−۰۰۰۰۱" />
       <updated>1764439556025</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL‎−۰۰۰۰۲" summary="feat(accounts): implement custom user model with email authentication and profile&#10;&#10;- Replace default User with email-based AbstractBaseUser&#10;- Add Profile model linked to User via OneToOne &#10;- Configure admin panel for User and Profile&#10;- Add post_save signal to auto-create Profile on user registration">
+      <option name="closed" value="true" />
+      <created>1764530354737</created>
+      <option name="number" value="LOCAL‎−۰۰۰۰۲" />
+      <option name="presentableId" value="LOCAL‎−۰۰۰۰۲" />
+      <updated>1764530354737</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -167,6 +168,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="feat: set up initial project structure&#10;&#10;- Create 'accounts' and 'blog' Django apps&#10;- Add Dockerfile and docker-compose.yml&#10;- Configure containerized development environment" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: set up initial project structure&#10;&#10;- Create 'accounts' and 'blog' Django apps&#10;- Add Dockerfile and docker-compose.yml&#10;- Configure containerized development environment" />
+    <MESSAGE value="feat(accounts): implement custom user model with email authentication and profile&#10;&#10;- Replace default User with email-based AbstractBaseUser&#10;- Add Profile model linked to User via OneToOne &#10;- Configure admin panel for User and Profile&#10;- Add post_save signal to auto-create Profile on user registration" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat(accounts): implement custom user model with email authentication and profile&#10;&#10;- Replace default User with email-based AbstractBaseUser&#10;- Add Profile model linked to User via OneToOne &#10;- Configure admin panel for User and Profile&#10;- Add post_save signal to auto-create Profile on user registration" />
   </component>
 </project>

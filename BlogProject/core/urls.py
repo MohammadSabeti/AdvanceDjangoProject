@@ -16,8 +16,19 @@ Including another URLconf
 """
 
 from django.contrib import admin
-from django.urls import path
+from debug_toolbar.toolbar import debug_toolbar_urls
+from core import settings
+from django.conf.urls.static import static
+from django.urls import path, include
 
 urlpatterns = [
     path("admin/", admin.site.urls),
+    path("accounts/", include("accounts.urls")),
+    path("blog/", include("blog.urls")),
 ]
+
+# serving static and media for development
+if settings.DEBUG:
+    urlpatterns += (static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+                    + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+                    + debug_toolbar_urls())
