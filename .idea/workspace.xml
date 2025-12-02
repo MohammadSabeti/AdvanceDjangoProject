@@ -4,11 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3ec5e726-6c18-4f7f-8cf6-64d7d25b3359" name="Changes" comment="feat(accounts): implement custom user model with email authentication and profile&#10;&#10;- Replace default User with email-based AbstractBaseUser&#10;- Add Profile model linked to User via OneToOne &#10;- Configure admin panel for User and Profile&#10;- Add post_save signal to auto-create Profile on user registration">
-      <change beforePath="$PROJECT_DIR$/BlogProject/blog/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/BlogProject/blog/admin.py" afterDir="false" />
+    <list default="true" id="3ec5e726-6c18-4f7f-8cf6-64d7d25b3359" name="Changes" comment="feat(blog): implement core blog models and admin interface&#10;&#10;- Add Category and Post models with relations to custom User&#10;- Include helper method `first_sentence` for content preview&#10;- Configure PostAdmin with list display, filters, search, and custom action&#10;- Register models in admin and set up basic URL routing">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BlogProject/blog/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/BlogProject/blog/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BlogProject/core/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/BlogProject/core/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BlogProject/core/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/BlogProject/core/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BlogProject/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/BlogProject/requirements.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -60,7 +60,7 @@
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;
+    &quot;settings.editor.selected.configurable&quot;: &quot;Errors&quot;
   }
 }</component>
   <component name="RecentsManager">
@@ -133,7 +133,9 @@
       <workItem from="1764424378609" duration="2005000" />
       <workItem from="1764426509380" duration="13190000" />
       <workItem from="1764503229828" duration="2170000" />
-      <workItem from="1764521861935" duration="6916000" />
+      <workItem from="1764521861935" duration="7388000" />
+      <workItem from="1764578563798" duration="5457000" />
+      <workItem from="1764678186885" duration="1321000" />
     </task>
     <task id="LOCAL‎−۰۰۰۰۱" summary="feat: set up initial project structure&#10;&#10;- Create 'accounts' and 'blog' Django apps&#10;- Add Dockerfile and docker-compose.yml&#10;- Configure containerized development environment">
       <option name="closed" value="true" />
@@ -149,7 +151,14 @@
       <option name="presentableId" value="LOCAL‎−۰۰۰۰۲" />
       <updated>1764530354737</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL‎−۰۰۰۰۳" summary="feat(blog): implement core blog models and admin interface&#10;&#10;- Add Category and Post models with relations to custom User&#10;- Include helper method `first_sentence` for content preview&#10;- Configure PostAdmin with list display, filters, search, and custom action&#10;- Register models in admin and set up basic URL routing">
+      <option name="closed" value="true" />
+      <created>1764531133399</created>
+      <option name="number" value="LOCAL‎−۰۰۰۰۳" />
+      <option name="presentableId" value="LOCAL‎−۰۰۰۰۳" />
+      <updated>1764531133399</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -169,6 +178,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="feat: set up initial project structure&#10;&#10;- Create 'accounts' and 'blog' Django apps&#10;- Add Dockerfile and docker-compose.yml&#10;- Configure containerized development environment" />
     <MESSAGE value="feat(accounts): implement custom user model with email authentication and profile&#10;&#10;- Replace default User with email-based AbstractBaseUser&#10;- Add Profile model linked to User via OneToOne &#10;- Configure admin panel for User and Profile&#10;- Add post_save signal to auto-create Profile on user registration" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat(accounts): implement custom user model with email authentication and profile&#10;&#10;- Replace default User with email-based AbstractBaseUser&#10;- Add Profile model linked to User via OneToOne &#10;- Configure admin panel for User and Profile&#10;- Add post_save signal to auto-create Profile on user registration" />
+    <MESSAGE value="feat(blog): implement core blog models and admin interface&#10;&#10;- Add Category and Post models with relations to custom User&#10;- Include helper method `first_sentence` for content preview&#10;- Configure PostAdmin with list display, filters, search, and custom action&#10;- Register models in admin and set up basic URL routing" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat(blog): implement core blog models and admin interface&#10;&#10;- Add Category and Post models with relations to custom User&#10;- Include helper method `first_sentence` for content preview&#10;- Configure PostAdmin with list display, filters, search, and custom action&#10;- Register models in admin and set up basic URL routing" />
   </component>
 </project>

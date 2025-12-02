@@ -1,9 +1,10 @@
 import re
 from django.db import models
 from django.contrib.auth import get_user_model
+from accounts.models import Profile
 
 # getting user model object
-User=get_user_model()
+# User=get_user_model()
 
 class Category(models.Model):
     name = models.CharField(max_length=20)
@@ -16,8 +17,8 @@ class Post(models.Model):
         ordering = ['-created_date']
 
 
-    author = models.ForeignKey(User, on_delete=models.SET_NULL,
-                               null=True,related_name='posts_author')
+    author = models.ForeignKey(Profile, on_delete=models.SET_NULL,
+                               null=True,related_name='posts_author')`
     image = models.ImageField(upload_to='blog/',blank=True, null=True)
     title = models.CharField(max_length=255)
     content = models.TextField()
