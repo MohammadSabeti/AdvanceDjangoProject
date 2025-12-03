@@ -4,9 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3ec5e726-6c18-4f7f-8cf6-64d7d25b3359" name="Changes" comment="feat(blog): implement core blog models and admin interface&#10;&#10;- Add Category and Post models with relations to custom User&#10;- Include helper method `first_sentence` for content preview&#10;- Configure PostAdmin with list display, filters, search, and custom action&#10;- Register models in admin and set up basic URL routing">
+    <list default="true" id="3ec5e726-6c18-4f7f-8cf6-64d7d25b3359" name="Changes" comment="feat(blog): implement CRUD views and templates for blog posts&#10;&#10;- Add class-based views: list, detail, create, update, delete&#10;- Protect editing views with LoginRequiredMixin&#10;- Enforce object-level permissions via 'blog.view_post'&#10;- Use PostForm for consistent input validation&#10;- Include basic templates and configure URL routing&#10;- Add sample redirect view to maktabkhooneh (for demo)">
+      <change afterPath="$PROJECT_DIR$/BlogProject/blog/api/v1/serializer.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BlogProject/blog/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/BlogProject/blog/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BlogProject/core/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/BlogProject/core/settings.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BlogProject/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/BlogProject/requirements.txt" afterDir="false" />
     </list>
@@ -60,7 +60,7 @@
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;Errors&quot;
+    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;
   }
 }</component>
   <component name="RecentsManager">
@@ -135,7 +135,11 @@
       <workItem from="1764503229828" duration="2170000" />
       <workItem from="1764521861935" duration="7388000" />
       <workItem from="1764578563798" duration="5457000" />
-      <workItem from="1764678186885" duration="1321000" />
+      <workItem from="1764678186885" duration="9379000" />
+      <workItem from="1764693687030" duration="174000" />
+      <workItem from="1764693893682" duration="688000" />
+      <workItem from="1764694635157" duration="3819000" />
+      <workItem from="1764772193147" duration="3762000" />
     </task>
     <task id="LOCAL‎−۰۰۰۰۱" summary="feat: set up initial project structure&#10;&#10;- Create 'accounts' and 'blog' Django apps&#10;- Add Dockerfile and docker-compose.yml&#10;- Configure containerized development environment">
       <option name="closed" value="true" />
@@ -158,7 +162,28 @@
       <option name="presentableId" value="LOCAL‎−۰۰۰۰۳" />
       <updated>1764531133399</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL‎−۰۰۰۰۴" summary="refactor(blog): link Post.author to Profile instead of User&#10;&#10;- Update ForeignKey from User to Profile for semantic correctness&#10;- Author now references displayable identity (name, image) rather than auth model&#10;- Maintains SET_NULL behavior to preserve posts if profile is deleted">
+      <option name="closed" value="true" />
+      <created>1764683807794</created>
+      <option name="number" value="LOCAL‎−۰۰۰۰۴" />
+      <option name="presentableId" value="LOCAL‎−۰۰۰۰۴" />
+      <updated>1764683807794</updated>
+    </task>
+    <task id="LOCAL‎−۰۰۰۰۵" summary="refactor(blog): link Post.author to Profile instead of User&#10;&#10;- Update ForeignKey from User to Profile for semantic correctness&#10;- Author now references displayable identity (name, image) rather than auth model&#10;- Maintains SET_NULL behavior to preserve posts if profile is deleted">
+      <option name="closed" value="true" />
+      <created>1764683835638</created>
+      <option name="number" value="LOCAL‎−۰۰۰۰۵" />
+      <option name="presentableId" value="LOCAL‎−۰۰۰۰۵" />
+      <updated>1764683835638</updated>
+    </task>
+    <task id="LOCAL‎−۰۰۰۰۶" summary="feat(blog): implement CRUD views and templates for blog posts&#10;&#10;- Add class-based views: list, detail, create, update, delete&#10;- Protect editing views with LoginRequiredMixin&#10;- Enforce object-level permissions via 'blog.view_post'&#10;- Use PostForm for consistent input validation&#10;- Include basic templates and configure URL routing&#10;- Add sample redirect view to maktabkhooneh (for demo)">
+      <option name="closed" value="true" />
+      <created>1764780723315</created>
+      <option name="number" value="LOCAL‎−۰۰۰۰۶" />
+      <option name="presentableId" value="LOCAL‎−۰۰۰۰۶" />
+      <updated>1764780723315</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -179,6 +204,8 @@
     <MESSAGE value="feat: set up initial project structure&#10;&#10;- Create 'accounts' and 'blog' Django apps&#10;- Add Dockerfile and docker-compose.yml&#10;- Configure containerized development environment" />
     <MESSAGE value="feat(accounts): implement custom user model with email authentication and profile&#10;&#10;- Replace default User with email-based AbstractBaseUser&#10;- Add Profile model linked to User via OneToOne &#10;- Configure admin panel for User and Profile&#10;- Add post_save signal to auto-create Profile on user registration" />
     <MESSAGE value="feat(blog): implement core blog models and admin interface&#10;&#10;- Add Category and Post models with relations to custom User&#10;- Include helper method `first_sentence` for content preview&#10;- Configure PostAdmin with list display, filters, search, and custom action&#10;- Register models in admin and set up basic URL routing" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat(blog): implement core blog models and admin interface&#10;&#10;- Add Category and Post models with relations to custom User&#10;- Include helper method `first_sentence` for content preview&#10;- Configure PostAdmin with list display, filters, search, and custom action&#10;- Register models in admin and set up basic URL routing" />
+    <MESSAGE value="refactor(blog): link Post.author to Profile instead of User&#10;&#10;- Update ForeignKey from User to Profile for semantic correctness&#10;- Author now references displayable identity (name, image) rather than auth model&#10;- Maintains SET_NULL behavior to preserve posts if profile is deleted" />
+    <MESSAGE value="feat(blog): implement CRUD views and templates for blog posts&#10;&#10;- Add class-based views: list, detail, create, update, delete&#10;- Protect editing views with LoginRequiredMixin&#10;- Enforce object-level permissions via 'blog.view_post'&#10;- Use PostForm for consistent input validation&#10;- Include basic templates and configure URL routing&#10;- Add sample redirect view to maktabkhooneh (for demo)" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat(blog): implement CRUD views and templates for blog posts&#10;&#10;- Add class-based views: list, detail, create, update, delete&#10;- Protect editing views with LoginRequiredMixin&#10;- Enforce object-level permissions via 'blog.view_post'&#10;- Use PostForm for consistent input validation&#10;- Include basic templates and configure URL routing&#10;- Add sample redirect view to maktabkhooneh (for demo)" />
   </component>
 </project>

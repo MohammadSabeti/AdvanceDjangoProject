@@ -53,6 +53,7 @@ INSTALLED_APPS = [
 
     'django.contrib.humanize',
     "debug_toolbar",
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
