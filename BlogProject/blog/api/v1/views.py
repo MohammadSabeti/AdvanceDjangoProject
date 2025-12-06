@@ -3,9 +3,11 @@ from rest_framework.decorators import api_view,permission_classes
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
 from rest_framework.response import Response
 from rest_framework import status
+from rest_framework.views import APIView
 from .serializer import PostSerializer
 from ...models import Post
 
+# Function Based Views
 @api_view(['GET','POST'])
 @permission_classes([IsAuthenticatedOrReadOnly])
 def post_list(request):
@@ -58,3 +60,50 @@ def post_detail(request,id):
           return Response({"detail":"post deleted successfully"},status=status.HTTP_204_NO_CONTENT)
 
 
+# Class Based Views
+class PostList(APIView):
+    """
+    List all posts, or create a new post.
+    """
+    permission_classes=[IsAuthenticatedOrReadOnly]
+    serializer_class = PostSerializer
+
+    def get(self, request):
+         """ Retrieving a list of all posts  """
+         posts = Post.objects.all()
+         post_serializer = self.serializer_class(posts, many=True)
+         return Response(post_serializer.data)
+
+    def post(self,request):
+         """ Creating a new post with provided data """
+         serializer = self.serializer_class(data=request.data)
+         serializer.is_valid(raise_exception=True)
+         serializer.save()
+         return Response(serializer.data)
+
+class PostDetail(APIView):
+    """
+    Retrieve, update or delete a post instance.
+    """
+    permission_classes=[IsAuthenticatedOrReadOnly]
+    serializer_class = PostSerializer
+
+    def get(self, request,id):
+         """ Retrieving a post  """
+         post = get_object_or_404(Post, id=id)
+         post_serializer = self.serializer_class(post)
+         return Response(post_serializer.data)
+
+    def put(self,request,id):
+         """ Updating a post  """
+         post = get_object_or_404(Post, id=id)
+         serializer = self.serializer_class(post, data=request.data)
+         serializer.is_valid(raise_exception=True)
+         serializer.save()
+         return Response(serializer.data)
+
+    def delete(self,request,id):
+         """ Deleting a post  """
+         post = get_object_or_404(Post, id=id)
+         post.delete()
+         return Response({"detail": "post deleted successfully"}, status=status.HTTP_204_NO_CONTENT)
