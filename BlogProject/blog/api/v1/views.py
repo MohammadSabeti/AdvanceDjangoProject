@@ -4,6 +4,10 @@ from rest_framework.permissions import IsAuthenticatedOrReadOnly
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.views import APIView
+from rest_framework.generics import ListCreateAPIView, GenericAPIView, RetrieveUpdateDestroyAPIView
+from rest_framework.mixins import ListModelMixin, RetrieveModelMixin, UpdateModelMixin,CreateModelMixin
+from rest_framework.viewsets import ViewSet, ModelViewSet
+
 from .serializer import PostSerializer
 from ...models import Post
 
@@ -61,7 +65,7 @@ def post_detail(request,id):
 
 
 # Class Based Views
-class PostList(APIView):
+class PostListAPIView(APIView):
     """
     List all posts, or create a new post.
     """
@@ -81,7 +85,7 @@ class PostList(APIView):
          serializer.save()
          return Response(serializer.data)
 
-class PostDetail(APIView):
+class PostDetailAPIView(APIView):
     """
     Retrieve, update or delete a post instance.
     """
@@ -107,3 +111,31 @@ class PostDetail(APIView):
          post = get_object_or_404(Post, id=id)
          post.delete()
          return Response({"detail": "post deleted successfully"}, status=status.HTTP_204_NO_CONTENT)
+
+# Generic Class Based Views
+
+# GenericAPIView,ListModelMixin,CreateModelMixin == ListCreateAPIView
+class PostListGenericAPIView(ListCreateAPIView):
+     """
+     List all posts, or create a new post.
+     """
+     permission_classes = [IsAuthenticatedOrReadOnly]
+     serializer_class = PostSerializer
+     queryset = Post.objects.all()
+
+# GenericAPIView,RetrieveModelMixin,UpdateModelMixin,DestroyModelMixin == RetrieveUpdateDestroyAPIView
+class PostDetailGenericAPIView(RetrieveUpdateDestroyAPIView):
+     """
+        Retrieve, update or delete a post instance.
+        """
+     permission_classes = [IsAuthenticatedOrReadOnly]
+     serializer_class = PostSerializer
+     queryset = Post.objects.all()
+     lookup_field='id'
+
+class PostViewSet(ModelViewSet):
+     permission_classes = [IsAuthenticatedOrReadOnly]
+     serializer_class = PostSerializer
+     queryset = Post.objects.all()
+
+
