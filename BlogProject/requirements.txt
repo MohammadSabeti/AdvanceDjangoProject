@@ -5,7 +5,9 @@ django-robots==6.1
 pillow==12.0.0
 psycopg2-binary==2.9.11
 python-decouple==3.8
+coreapi==2.3.3
 
+setuptools
 djangorestframework
 markdown
 django-filter
