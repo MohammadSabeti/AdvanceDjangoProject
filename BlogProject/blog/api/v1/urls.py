@@ -3,8 +3,9 @@ from .views import *
 from rest_framework.routers import DefaultRouter
 
 router = DefaultRouter()
-router.register('post_view_set',PostViewSet)
-app_name = 'api-1'
+router.register('post',PostViewSet)
+router.register('category',CategoryViewSet)
+app_name = 'api-v1'
 urlpatterns = [
     path("", include(router.urls)),
     path("post_fbv/", post_list, name="post_list_fbv"),

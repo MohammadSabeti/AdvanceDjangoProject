@@ -2,6 +2,7 @@ import re
 from django.db import models
 from django.contrib.auth import get_user_model
 from accounts.models import Profile
+from django.urls import reverse
 
 # getting user model object
 # User=get_user_model()
@@ -38,6 +39,9 @@ class Post(models.Model):
         match = re.split(r'(?<=[.!؟])\s+', self.content.strip())
         return f'{match[0]} ...' if match else ''
 
+    def get_absolute_api_url(self):
+        return reverse("blog:api-v1:post-detail",
+                       kwargs={"pk":self.pk})
 
     def __str__(self):
         return f'{self.id} - {self.title}'

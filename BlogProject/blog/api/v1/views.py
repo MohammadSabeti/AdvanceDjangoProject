@@ -1,5 +1,5 @@
 from django.shortcuts import get_object_or_404
-from rest_framework.decorators import api_view,permission_classes
+from rest_framework.decorators import api_view, permission_classes, action
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
 from rest_framework.response import Response
 from rest_framework import status
@@ -8,8 +8,8 @@ from rest_framework.generics import ListCreateAPIView, GenericAPIView, RetrieveU
 from rest_framework.mixins import ListModelMixin, RetrieveModelMixin, UpdateModelMixin,CreateModelMixin
 from rest_framework.viewsets import ViewSet, ModelViewSet
 
-from .serializer import PostSerializer
-from ...models import Post
+from .serializer import PostSerializer,CategorySerializer
+from ...models import Post,Category
 
 # Function Based Views
 @api_view(['GET','POST'])
@@ -137,5 +137,14 @@ class PostViewSet(ModelViewSet):
      permission_classes = [IsAuthenticatedOrReadOnly]
      serializer_class = PostSerializer
      queryset = Post.objects.all()
+
+     @action(methods=['get'],detail=False)
+     def get_ok(self,request):
+          return Response({'detail':'ok'})
+
+class CategoryViewSet(ModelViewSet):
+     permission_classes = [IsAuthenticatedOrReadOnly]
+     serializer_class = CategorySerializer
+     queryset = Category.objects.all()
 
 
