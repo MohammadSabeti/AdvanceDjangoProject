@@ -1,13 +1,18 @@
+# general modules
 Django==5.2.7
-django-debug-toolbar==6.1.0
-django-extensions==4.1
-django-robots==6.1
 pillow==12.0.0
 psycopg2-binary==2.9.11
 python-decouple==3.8
+djangorestframework
+setuptools
+
+# third party modules
+drf-yasg[validation]
+django-filter
+django-debug-toolbar==6.1.0
+django-extensions==4.1
+django-robots==6.1
+markdown
 coreapi==2.3.3
 
-setuptools
-djangorestframework
-markdown
-django-filter
+# development module

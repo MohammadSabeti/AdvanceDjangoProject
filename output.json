@@ -1,0 +1,597 @@
+swagger: '2.0'
+info:
+  title: Blog Project API
+  description: This is a test api for advanced blog project
+  termsOfService: https://www.google.com/policies/terms/
+  contact:
+    email: mohammad.sabeti2000@gmail.com
+  license:
+    name: MIT License
+  version: v1
+host: localhost:8000
+schemes:
+- http
+basePath: /blog/api/v1
+consumes:
+- application/json
+produces:
+- application/json
+securityDefinitions:
+  Basic:
+    type: basic
+security:
+- Basic: []
+paths:
+  /category/:
+    get:
+      operationId: category_list
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Category'
+      tags:
+      - category
+    post:
+      operationId: category_create
+      description: ''
+      parameters:
+      - name: data
+        in: body
+        required: true
+        schema:
+          $ref: '#/definitions/Category'
+      responses:
+        '201':
+          description: ''
+          schema:
+            $ref: '#/definitions/Category'
+      tags:
+      - category
+    parameters: []
+  /category/{id}/:
+    get:
+      operationId: category_read
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/Category'
+      tags:
+      - category
+    put:
+      operationId: category_update
+      description: ''
+      parameters:
+      - name: data
+        in: body
+        required: true
+        schema:
+          $ref: '#/definitions/Category'
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/Category'
+      tags:
+      - category
+    patch:
+      operationId: category_partial_update
+      description: ''
+      parameters:
+      - name: data
+        in: body
+        required: true
+        schema:
+          $ref: '#/definitions/Category'
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/Category'
+      tags:
+      - category
+    delete:
+      operationId: category_delete
+      description: ''
+      parameters: []
+      responses:
+        '204':
+          description: ''
+      tags:
+      - category
+    parameters:
+    - name: id
+      in: path
+      description: A unique integer value identifying this category.
+      required: true
+      type: integer
+  /post/:
+    get:
+      operationId: post_list
+      description: ''
+      parameters:
+      - name: category
+        in: query
+        description: ''
+        required: false
+        type: string
+      - name: category__in
+        in: query
+        description: ''
+        required: false
+        type: string
+      - name: author
+        in: query
+        description: ''
+        required: false
+        type: string
+      - name: status
+        in: query
+        description: ''
+        required: false
+        type: string
+      - name: search
+        in: query
+        description: A search term.
+        required: false
+        type: string
+      - name: ordering
+        in: query
+        description: Which field to use when ordering the results.
+        required: false
+        type: string
+      - name: page
+        in: query
+        description: A page number within the paginated result set.
+        required: false
+        type: integer
+      - name: page_size
+        in: query
+        description: Number of results to return per page.
+        required: false
+        type: integer
+      responses:
+        '200':
+          description: ''
+          schema:
+            required:
+            - count
+            - results
+            type: object
+            properties:
+              count:
+                type: integer
+              next:
+                type: string
+                format: uri
+                x-nullable: true
+              previous:
+                type: string
+                format: uri
+                x-nullable: true
+              results:
+                type: array
+                items:
+                  $ref: '#/definitions/Post'
+      tags:
+      - post
+    post:
+      operationId: post_create
+      description: ''
+      parameters:
+      - name: data
+        in: body
+        required: true
+        schema:
+          $ref: '#/definitions/Post'
+      responses:
+        '201':
+          description: ''
+          schema:
+            $ref: '#/definitions/Post'
+      tags:
+      - post
+    parameters: []
+  /post/get_ok/:
+    get:
+      operationId: post_get_ok
+      description: ''
+      parameters:
+      - name: category
+        in: query
+        description: ''
+        required: false
+        type: string
+      - name: category__in
+        in: query
+        description: ''
+        required: false
+        type: string
+      - name: author
+        in: query
+        description: ''
+        required: false
+        type: string
+      - name: status
+        in: query
+        description: ''
+        required: false
+        type: string
+      - name: search
+        in: query
+        description: A search term.
+        required: false
+        type: string
+      - name: ordering
+        in: query
+        description: Which field to use when ordering the results.
+        required: false
+        type: string
+      - name: page
+        in: query
+        description: A page number within the paginated result set.
+        required: false
+        type: integer
+      - name: page_size
+        in: query
+        description: Number of results to return per page.
+        required: false
+        type: integer
+      responses:
+        '200':
+          description: ''
+          schema:
+            required:
+            - count
+            - results
+            type: object
+            properties:
+              count:
+                type: integer
+              next:
+                type: string
+                format: uri
+                x-nullable: true
+              previous:
+                type: string
+                format: uri
+                x-nullable: true
+              results:
+                type: array
+                items:
+                  $ref: '#/definitions/Post'
+      tags:
+      - post
+    parameters: []
+  /post/{id}/:
+    get:
+      operationId: post_read
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/Post'
+      tags:
+      - post
+    put:
+      operationId: post_update
+      description: ''
+      parameters:
+      - name: data
+        in: body
+        required: true
+        schema:
+          $ref: '#/definitions/Post'
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/Post'
+      tags:
+      - post
+    patch:
+      operationId: post_partial_update
+      description: ''
+      parameters:
+      - name: data
+        in: body
+        required: true
+        schema:
+          $ref: '#/definitions/Post'
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/Post'
+      tags:
+      - post
+    delete:
+      operationId: post_delete
+      description: ''
+      parameters: []
+      responses:
+        '204':
+          description: ''
+      tags:
+      - post
+    parameters:
+    - name: id
+      in: path
+      description: A unique integer value identifying this post.
+      required: true
+      type: integer
+  /post_api_view/:
+    get:
+      operationId: post_api_view_list
+      description: Retrieving a list of all posts
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+      - post_api_view
+    post:
+      operationId: post_api_view_create
+      description: Creating a new post with provided data
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      tags:
+      - post_api_view
+    parameters: []
+  /post_api_view/{id}/:
+    get:
+      operationId: post_api_view_read
+      description: Retrieving a post
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+      - post_api_view
+    put:
+      operationId: post_api_view_update
+      description: Updating a post
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+      - post_api_view
+    delete:
+      operationId: post_api_view_delete
+      description: Deleting a post
+      parameters: []
+      responses:
+        '204':
+          description: ''
+      tags:
+      - post_api_view
+    parameters:
+    - name: id
+      in: path
+      required: true
+      type: string
+  /post_fbv/:
+    get:
+      operationId: post_fbv_list
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+      - post_fbv
+    post:
+      operationId: post_fbv_create
+      description: ''
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      tags:
+      - post_fbv
+    parameters: []
+  /post_fbv/{id}/:
+    get:
+      operationId: post_fbv_read
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+      - post_fbv
+    put:
+      operationId: post_fbv_update
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+      - post_fbv
+    delete:
+      operationId: post_fbv_delete
+      description: ''
+      parameters: []
+      responses:
+        '204':
+          description: ''
+      tags:
+      - post_fbv
+    parameters:
+    - name: id
+      in: path
+      required: true
+      type: string
+  /post_gen_api_view/:
+    get:
+      operationId: post_gen_api_view_list
+      description: List all posts, or create a new post.
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Post'
+      tags:
+      - post_gen_api_view
+    post:
+      operationId: post_gen_api_view_create
+      description: List all posts, or create a new post.
+      parameters:
+      - name: data
+        in: body
+        required: true
+        schema:
+          $ref: '#/definitions/Post'
+      responses:
+        '201':
+          description: ''
+          schema:
+            $ref: '#/definitions/Post'
+      tags:
+      - post_gen_api_view
+    parameters: []
+  /post_gen_api_view/{id}/:
+    get:
+      operationId: post_gen_api_view_read
+      description: Retrieve, update or delete a post instance.
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/Post'
+      tags:
+      - post_gen_api_view
+    put:
+      operationId: post_gen_api_view_update
+      description: Retrieve, update or delete a post instance.
+      parameters:
+      - name: data
+        in: body
+        required: true
+        schema:
+          $ref: '#/definitions/Post'
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/Post'
+      tags:
+      - post_gen_api_view
+    patch:
+      operationId: post_gen_api_view_partial_update
+      description: Retrieve, update or delete a post instance.
+      parameters:
+      - name: data
+        in: body
+        required: true
+        schema:
+          $ref: '#/definitions/Post'
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/Post'
+      tags:
+      - post_gen_api_view
+    delete:
+      operationId: post_gen_api_view_delete
+      description: Retrieve, update or delete a post instance.
+      parameters: []
+      responses:
+        '204':
+          description: ''
+      tags:
+      - post_gen_api_view
+    parameters:
+    - name: id
+      in: path
+      description: A unique integer value identifying this post.
+      required: true
+      type: integer
+definitions:
+  Category:
+    required:
+    - name
+    type: object
+    properties:
+      id:
+        title: ID
+        type: integer
+        readOnly: true
+      name:
+        title: Name
+        type: string
+        maxLength: 20
+        minLength: 1
+  Post:
+    required:
+    - title
+    - content
+    - category
+    type: object
+    properties:
+      id:
+        title: ID
+        type: integer
+        readOnly: true
+      author:
+        title: Author
+        type: string
+        readOnly: true
+      title:
+        title: Title
+        type: string
+        maxLength: 255
+        minLength: 1
+      brief_content:
+        title: Brief content
+        type: string
+        readOnly: true
+      content:
+        title: Content
+        type: string
+        minLength: 1
+      image:
+        title: Image
+        type: string
+        readOnly: true
+        x-nullable: true
+        format: uri
+      status:
+        title: Status
+        type: boolean
+      category:
+        title: Category
+        type: string
+      relative_url:
+        title: Relative url
+        type: string
+        format: uri
+        readOnly: true
+        minLength: 1
+      absolute_url:
+        title: Absolute url
+        type: string
+        readOnly: true
+      published_date:
+        title: Published date
+        type: string
+        format: date-time
+        x-nullable: true

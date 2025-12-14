@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'accounts.apps.AccountsConfig',
     "blog.apps.BlogConfig",
 
+    'drf_yasg',
     "django_filters",
     'django.contrib.humanize',
     "debug_toolbar",
