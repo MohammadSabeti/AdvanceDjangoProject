@@ -4,13 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3ec5e726-6c18-4f7f-8cf6-64d7d25b3359" name="Changes" comment="feat(blog): enhance Post API with pagination, filtering, search, and object-level permissions&#10;&#10;- Implement custom PostPagination with metadata (total pages, count, links)&#10;- Add IsOwnerOrReadonly permission: only post owner can edit/delete&#10;- Enable filtering via django-filter (category, author, status with 'in'/'exact')&#10;- Add full-text search on title/content and ordering by published_date&#10;- Configure all features in PostViewSet with proper security and usability">
-      <change afterPath="$PROJECT_DIR$/output.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="3ec5e726-6c18-4f7f-8cf6-64d7d25b3359" name="Changes" comment="feat(dev): add script to generate realistic test data for local development&#10;&#10;- Create 'create_test_data.py' with sample users, profiles, categories, and posts&#10;- Use get_or_create to avoid duplicates on re-run&#10;- Populate data with tech-themed content matching real-world scenarios&#10;- Enable quick setup of development environment with meaningful fixtures">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BlogProject/accounts/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/BlogProject/accounts/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BlogProject/core/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/BlogProject/core/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BlogProject/core/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/BlogProject/core/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BlogProject/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/BlogProject/requirements.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -153,7 +150,8 @@
       <workItem from="1765445834239" duration="3874000" />
       <workItem from="1765452858280" duration="858000" />
       <workItem from="1765453774399" duration="2459000" />
-      <workItem from="1765722381220" duration="960000" />
+      <workItem from="1765722381220" duration="5001000" />
+      <workItem from="1765728769844" duration="15973000" />
     </task>
     <task id="LOCAL‎−۰۰۰۰۱" summary="feat: set up initial project structure&#10;&#10;- Create 'accounts' and 'blog' Django apps&#10;- Add Dockerfile and docker-compose.yml&#10;- Configure containerized development environment">
       <option name="closed" value="true" />
@@ -260,7 +258,21 @@
       <option name="presentableId" value="LOCAL‎−۰۰۰۱۵" />
       <updated>1765381291124</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL‎−۰۰۰۱۶" summary="feat(docs): replace coreapi with drf-yasg for OpenAPI 3.0 documentation&#10;&#10;- Install and configure drf-yasg in settings and urls&#10;- Enable Swagger UI and ReDoc endpoints for interactive API docs&#10;- Generate and save OpenAPI schema to output.json for external use&#10;- Align documentation with industry standards (OpenAPI/Swagger)">
+      <option name="closed" value="true" />
+      <created>1765724490011</created>
+      <option name="number" value="LOCAL‎−۰۰۰۱۶" />
+      <option name="presentableId" value="LOCAL‎−۰۰۰۱۶" />
+      <updated>1765724490011</updated>
+    </task>
+    <task id="LOCAL‎−۰۰۰۱۷" summary="feat(dev): add script to generate realistic test data for local development&#10;&#10;- Create 'create_test_data.py' with sample users, profiles, categories, and posts&#10;- Use get_or_create to avoid duplicates on re-run&#10;- Populate data with tech-themed content matching real-world scenarios&#10;- Enable quick setup of development environment with meaningful fixtures">
+      <option name="closed" value="true" />
+      <created>1765732715305</created>
+      <option name="number" value="LOCAL‎−۰۰۰۱۷" />
+      <option name="presentableId" value="LOCAL‎−۰۰۰۱۷" />
+      <updated>1765732715305</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -292,6 +304,8 @@
     <MESSAGE value="feat(accounts): add get_full_name property to Profile model&#10;&#10;- Expose full name as a computed property on Profile" />
     <MESSAGE value="feat(blog): enhance Post API with dynamic serialization and hypermedia URLs&#10;&#10;- Add get_absolute_api_url to Post model for canonical API links&#10;- Implement CategorySerializer using ModelSerializer for JSON representation&#10;- Implement PostSerializer with context-aware output:&#10;  • Show brief_content in list, full content in detail&#10;  • Include relative/absolute URLs using request context&#10;- Auto-set author from authenticated user’s profile on create&#10;- Use SlugRelatedField for author and show author full name in output&#10;- Use SlugRelatedField for category and nested CategorySerializer in output&#10;- Register PostViewSet and CategoryViewSet with DefaultRouter&#10;- Add sample @action (get_ok) for future custom endpoints" />
     <MESSAGE value="feat(blog): enhance Post API with pagination, filtering, search, and object-level permissions&#10;&#10;- Implement custom PostPagination with metadata (total pages, count, links)&#10;- Add IsOwnerOrReadonly permission: only post owner can edit/delete&#10;- Enable filtering via django-filter (category, author, status with 'in'/'exact')&#10;- Add full-text search on title/content and ordering by published_date&#10;- Configure all features in PostViewSet with proper security and usability" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat(blog): enhance Post API with pagination, filtering, search, and object-level permissions&#10;&#10;- Implement custom PostPagination with metadata (total pages, count, links)&#10;- Add IsOwnerOrReadonly permission: only post owner can edit/delete&#10;- Enable filtering via django-filter (category, author, status with 'in'/'exact')&#10;- Add full-text search on title/content and ordering by published_date&#10;- Configure all features in PostViewSet with proper security and usability" />
+    <MESSAGE value="feat(docs): replace coreapi with drf-yasg for OpenAPI 3.0 documentation&#10;&#10;- Install and configure drf-yasg in settings and urls&#10;- Enable Swagger UI and ReDoc endpoints for interactive API docs&#10;- Generate and save OpenAPI schema to output.json for external use&#10;- Align documentation with industry standards (OpenAPI/Swagger)" />
+    <MESSAGE value="feat(dev): add script to generate realistic test data for local development&#10;&#10;- Create 'create_test_data.py' with sample users, profiles, categories, and posts&#10;- Use get_or_create to avoid duplicates on re-run&#10;- Populate data with tech-themed content matching real-world scenarios&#10;- Enable quick setup of development environment with meaningful fixtures" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat(dev): add script to generate realistic test data for local development&#10;&#10;- Create 'create_test_data.py' with sample users, profiles, categories, and posts&#10;- Use get_or_create to avoid duplicates on re-run&#10;- Populate data with tech-themed content matching real-world scenarios&#10;- Enable quick setup of development environment with meaningful fixtures" />
   </component>
 </project>
