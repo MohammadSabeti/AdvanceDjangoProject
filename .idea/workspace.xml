@@ -4,10 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3ec5e726-6c18-4f7f-8cf6-64d7d25b3359" name="Changes" comment="feat(dev): add script to generate realistic test data for local development&#10;&#10;- Create 'create_test_data.py' with sample users, profiles, categories, and posts&#10;- Use get_or_create to avoid duplicates on re-run&#10;- Populate data with tech-themed content matching real-world scenarios&#10;- Enable quick setup of development environment with meaningful fixtures">
+    <list default="true" id="3ec5e726-6c18-4f7f-8cf6-64d7d25b3359" name="Changes" comment="fix(docker): use 'python -m pip' for reliable dependency installation&#10;&#10;- Replace 'pip install' with 'python -m pip install' in Dockerfile&#10;- Ensures consistent pip version aligned with the selected Python interpreter&#10;- Improves build reliability across different base images and environments">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BlogProject/accounts/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/BlogProject/accounts/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BlogProject/accounts/api/v1/serializer.py" beforeDir="false" afterPath="$PROJECT_DIR$/BlogProject/accounts/api/v1/serializer.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BlogProject/accounts/api/v1/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/BlogProject/accounts/api/v1/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BlogProject/accounts/api/v1/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/BlogProject/accounts/api/v1/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BlogProject/core/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/BlogProject/core/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BlogProject/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/BlogProject/requirements.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -151,7 +154,19 @@
       <workItem from="1765452858280" duration="858000" />
       <workItem from="1765453774399" duration="2459000" />
       <workItem from="1765722381220" duration="5001000" />
-      <workItem from="1765728769844" duration="15973000" />
+      <workItem from="1765728769844" duration="17458000" />
+      <workItem from="1765800990578" duration="182000" />
+      <workItem from="1765801216324" duration="392000" />
+      <workItem from="1765801698318" duration="255000" />
+      <workItem from="1765802000024" duration="276000" />
+      <workItem from="1765802332010" duration="1812000" />
+      <workItem from="1765804980970" duration="425000" />
+      <workItem from="1765823683668" duration="490000" />
+      <workItem from="1765824242517" duration="2097000" />
+      <workItem from="1765826505851" duration="1519000" />
+      <workItem from="1765828094728" duration="2660000" />
+      <workItem from="1765892880356" duration="1235000" />
+      <workItem from="1765894196221" duration="6454000" />
     </task>
     <task id="LOCAL‎−۰۰۰۰۱" summary="feat: set up initial project structure&#10;&#10;- Create 'accounts' and 'blog' Django apps&#10;- Add Dockerfile and docker-compose.yml&#10;- Configure containerized development environment">
       <option name="closed" value="true" />
@@ -272,7 +287,21 @@
       <option name="presentableId" value="LOCAL‎−۰۰۰۱۷" />
       <updated>1765732715305</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL‎−۰۰۰۱۸" summary="feat(accounts): implement v1 API for user registration, token login, and logout&#10;&#10;- Add registration endpoint with password confirmation and validation&#10;- Customize token auth to use email and return user profile info (name, email)&#10;- Implement secure logout by deleting auth token&#10;- Configure DRF TokenAuthentication in settings&#10;- Organize API under /api/v1/ with proper URL namespacing&#10;- Integrate with django.contrib.auth.urls for web-based auth flows">
+      <option name="closed" value="true" />
+      <created>1765800045007</created>
+      <option name="number" value="LOCAL‎−۰۰۰۱۸" />
+      <option name="presentableId" value="LOCAL‎−۰۰۰۱۸" />
+      <updated>1765800045007</updated>
+    </task>
+    <task id="LOCAL‎−۰۰۰۱۹" summary="fix(docker): use 'python -m pip' for reliable dependency installation&#10;&#10;- Replace 'pip install' with 'python -m pip install' in Dockerfile&#10;- Ensures consistent pip version aligned with the selected Python interpreter&#10;- Improves build reliability across different base images and environments">
+      <option name="closed" value="true" />
+      <created>1765899811084</created>
+      <option name="number" value="LOCAL‎−۰۰۰۱۹" />
+      <option name="presentableId" value="LOCAL‎−۰۰۰۱۹" />
+      <updated>1765899811084</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -306,6 +335,8 @@
     <MESSAGE value="feat(blog): enhance Post API with pagination, filtering, search, and object-level permissions&#10;&#10;- Implement custom PostPagination with metadata (total pages, count, links)&#10;- Add IsOwnerOrReadonly permission: only post owner can edit/delete&#10;- Enable filtering via django-filter (category, author, status with 'in'/'exact')&#10;- Add full-text search on title/content and ordering by published_date&#10;- Configure all features in PostViewSet with proper security and usability" />
     <MESSAGE value="feat(docs): replace coreapi with drf-yasg for OpenAPI 3.0 documentation&#10;&#10;- Install and configure drf-yasg in settings and urls&#10;- Enable Swagger UI and ReDoc endpoints for interactive API docs&#10;- Generate and save OpenAPI schema to output.json for external use&#10;- Align documentation with industry standards (OpenAPI/Swagger)" />
     <MESSAGE value="feat(dev): add script to generate realistic test data for local development&#10;&#10;- Create 'create_test_data.py' with sample users, profiles, categories, and posts&#10;- Use get_or_create to avoid duplicates on re-run&#10;- Populate data with tech-themed content matching real-world scenarios&#10;- Enable quick setup of development environment with meaningful fixtures" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat(dev): add script to generate realistic test data for local development&#10;&#10;- Create 'create_test_data.py' with sample users, profiles, categories, and posts&#10;- Use get_or_create to avoid duplicates on re-run&#10;- Populate data with tech-themed content matching real-world scenarios&#10;- Enable quick setup of development environment with meaningful fixtures" />
+    <MESSAGE value="feat(accounts): implement v1 API for user registration, token login, and logout&#10;&#10;- Add registration endpoint with password confirmation and validation&#10;- Customize token auth to use email and return user profile info (name, email)&#10;- Implement secure logout by deleting auth token&#10;- Configure DRF TokenAuthentication in settings&#10;- Organize API under /api/v1/ with proper URL namespacing&#10;- Integrate with django.contrib.auth.urls for web-based auth flows" />
+    <MESSAGE value="fix(docker): use 'python -m pip' for reliable dependency installation&#10;&#10;- Replace 'pip install' with 'python -m pip install' in Dockerfile&#10;- Ensures consistent pip version aligned with the selected Python interpreter&#10;- Improves build reliability across different base images and environments" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix(docker): use 'python -m pip' for reliable dependency installation&#10;&#10;- Replace 'pip install' with 'python -m pip install' in Dockerfile&#10;- Ensures consistent pip version aligned with the selected Python interpreter&#10;- Improves build reliability across different base images and environments" />
   </component>
 </project>
