@@ -4,13 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3ec5e726-6c18-4f7f-8cf6-64d7d25b3359" name="Changes" comment="fix(docker): use 'python -m pip' for reliable dependency installation&#10;&#10;- Replace 'pip install' with 'python -m pip install' in Dockerfile&#10;- Ensures consistent pip version aligned with the selected Python interpreter&#10;- Improves build reliability across different base images and environments">
+    <list default="true" id="3ec5e726-6c18-4f7f-8cf6-64d7d25b3359" name="Changes" comment="feat(accounts): implement JWT-based authentication with user profile and password change&#10;&#10;- Integrate djangorestframework-simplejwt and configure in settings&#10;- Customize JWT login to include email and user_id in response&#10;- Add secure change-password endpoint with old-password verification&#10;- Enable profile retrieval and update via /api/v1/profile/&#10;- Expose standard JWT endpoints: create, refresh, verify">
+      <change afterPath="$PROJECT_DIR$/BlogProject/accounts/api/v1/urls/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BlogProject/accounts/api/v1/urls/auth.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BlogProject/accounts/api/v1/urls/profiles.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BlogProject/accounts/models/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BlogProject/accounts/models/profile.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BlogProject/accounts/models/user.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BlogProject/accounts/api/v1/serializer.py" beforeDir="false" afterPath="$PROJECT_DIR$/BlogProject/accounts/api/v1/serializer.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BlogProject/accounts/api/v1/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/BlogProject/accounts/api/v1/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BlogProject/accounts/api/v1/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/BlogProject/accounts/api/v1/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BlogProject/core/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/BlogProject/core/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BlogProject/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/BlogProject/requirements.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BlogProject/accounts/api/v1/urls.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BlogProject/accounts/models.py" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,6 +49,9 @@
   &quot;associatedIndex&quot;: 3
 }</component>
   <component name="ProjectId" id="369go6jlMKhFDmZffoBYciv3ym5" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -166,7 +172,7 @@
       <workItem from="1765826505851" duration="1519000" />
       <workItem from="1765828094728" duration="2660000" />
       <workItem from="1765892880356" duration="1235000" />
-      <workItem from="1765894196221" duration="6454000" />
+      <workItem from="1765894196221" duration="8986000" />
     </task>
     <task id="LOCAL‎−۰۰۰۰۱" summary="feat: set up initial project structure&#10;&#10;- Create 'accounts' and 'blog' Django apps&#10;- Add Dockerfile and docker-compose.yml&#10;- Configure containerized development environment">
       <option name="closed" value="true" />
@@ -301,7 +307,14 @@
       <option name="presentableId" value="LOCAL‎−۰۰۰۱۹" />
       <updated>1765899811084</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL‎−۰۰۰۲۰" summary="feat(accounts): implement JWT-based authentication with user profile and password change&#10;&#10;- Integrate djangorestframework-simplejwt and configure in settings&#10;- Customize JWT login to include email and user_id in response&#10;- Add secure change-password endpoint with old-password verification&#10;- Enable profile retrieval and update via /api/v1/profile/&#10;- Expose standard JWT endpoints: create, refresh, verify">
+      <option name="closed" value="true" />
+      <created>1765901073408</created>
+      <option name="number" value="LOCAL‎−۰۰۰۲۰" />
+      <option name="presentableId" value="LOCAL‎−۰۰۰۲۰" />
+      <updated>1765901073408</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -337,6 +350,7 @@
     <MESSAGE value="feat(dev): add script to generate realistic test data for local development&#10;&#10;- Create 'create_test_data.py' with sample users, profiles, categories, and posts&#10;- Use get_or_create to avoid duplicates on re-run&#10;- Populate data with tech-themed content matching real-world scenarios&#10;- Enable quick setup of development environment with meaningful fixtures" />
     <MESSAGE value="feat(accounts): implement v1 API for user registration, token login, and logout&#10;&#10;- Add registration endpoint with password confirmation and validation&#10;- Customize token auth to use email and return user profile info (name, email)&#10;- Implement secure logout by deleting auth token&#10;- Configure DRF TokenAuthentication in settings&#10;- Organize API under /api/v1/ with proper URL namespacing&#10;- Integrate with django.contrib.auth.urls for web-based auth flows" />
     <MESSAGE value="fix(docker): use 'python -m pip' for reliable dependency installation&#10;&#10;- Replace 'pip install' with 'python -m pip install' in Dockerfile&#10;- Ensures consistent pip version aligned with the selected Python interpreter&#10;- Improves build reliability across different base images and environments" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix(docker): use 'python -m pip' for reliable dependency installation&#10;&#10;- Replace 'pip install' with 'python -m pip install' in Dockerfile&#10;- Ensures consistent pip version aligned with the selected Python interpreter&#10;- Improves build reliability across different base images and environments" />
+    <MESSAGE value="feat(accounts): implement JWT-based authentication with user profile and password change&#10;&#10;- Integrate djangorestframework-simplejwt and configure in settings&#10;- Customize JWT login to include email and user_id in response&#10;- Add secure change-password endpoint with old-password verification&#10;- Enable profile retrieval and update via /api/v1/profile/&#10;- Expose standard JWT endpoints: create, refresh, verify" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat(accounts): implement JWT-based authentication with user profile and password change&#10;&#10;- Integrate djangorestframework-simplejwt and configure in settings&#10;- Customize JWT login to include email and user_id in response&#10;- Add secure change-password endpoint with old-password verification&#10;- Enable profile retrieval and update via /api/v1/profile/&#10;- Expose standard JWT endpoints: create, refresh, verify" />
   </component>
 </project>
