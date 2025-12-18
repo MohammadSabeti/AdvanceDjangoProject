@@ -55,10 +55,12 @@ class CustomAuthTokenSerializer(serializers.Serializer):
                                 email=email, password=password)
 
             # The authenticate call simply returns None for is_active=False
-            # users. (Assuming the default ModelBackend authentication
-            # backend.)
+            # users. (Assuming the default ModelBackend authentication backend.)
             if not user:
                 msg = _('Unable to log in with provided credentials.')
+                raise serializers.ValidationError(msg, code='authorization')
+            if not user.is_verified:
+                msg = _('User is not verified.')
                 raise serializers.ValidationError(msg, code='authorization')
         else:
             msg = _('Must include "email" and "password".')
@@ -73,6 +75,9 @@ class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
 
     def validate(self, attrs):
         validated_data = super(CustomTokenObtainPairSerializer, self).validate(attrs)
+        if not self.user.is_verified:
+            msg = _('User is not verified.')
+            raise serializers.ValidationError(msg, code='authorization')
         validated_data['email']= self.user.email
         validated_data['user_id']= self.user.id
 
@@ -102,3 +107,17 @@ class ProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model = Profile
         fields = ['user_id','email','first_name', 'last_name', 'image', 'description']
+
+class ActivationResendSerializer(serializers.Serializer):
+    email = serializers.EmailField(required=True)
+
+    def validate(self, attrs):
+        email = attrs.get('email')
+        try:
+            user_obj=User.objects.get(email=email)
+        except User.DoesNotExist:
+            raise serializers.ValidationError({"detail":"User does not exist."})
+        if user_obj.is_verified:
+            raise serializers.ValidationError({'detail': 'Your account has been verified and activated.'})
+        attrs['user']=user_obj
+        return super().validate(attrs)

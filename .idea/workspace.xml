@@ -4,16 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3ec5e726-6c18-4f7f-8cf6-64d7d25b3359" name="Changes" comment="feat(accounts): implement JWT-based authentication with user profile and password change&#10;&#10;- Integrate djangorestframework-simplejwt and configure in settings&#10;- Customize JWT login to include email and user_id in response&#10;- Add secure change-password endpoint with old-password verification&#10;- Enable profile retrieval and update via /api/v1/profile/&#10;- Expose standard JWT endpoints: create, refresh, verify">
-      <change afterPath="$PROJECT_DIR$/BlogProject/accounts/api/v1/urls/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BlogProject/accounts/api/v1/urls/auth.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BlogProject/accounts/api/v1/urls/profiles.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BlogProject/accounts/models/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BlogProject/accounts/models/profile.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BlogProject/accounts/models/user.py" afterDir="false" />
+    <list default="true" id="3ec5e726-6c18-4f7f-8cf6-64d7d25b3359" name="Changes" comment="feat(dev): add smtp4dev to docker-compose for local email testing&#10;&#10;- Integrate smtp4dev container as local SMTP/IMAP/POP3 server&#10;- Bind web UI to 127.0.0.1:5000 and SMTP to 127.0.0.1:2525 for security&#10;- Persist email data via smtp4dev-data volume&#10;- Enable safe, offline email verification testing in development">
+      <change afterPath="$PROJECT_DIR$/BlogProject/accounts/api/utils.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BlogProject/accounts/services.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BlogProject/templates/email/activation_email.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BlogProject/accounts/api/v1/urls.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BlogProject/accounts/models.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BlogProject/accounts/api/v1/serializer.py" beforeDir="false" afterPath="$PROJECT_DIR$/BlogProject/accounts/api/v1/serializer.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BlogProject/accounts/api/v1/urls/auth.py" beforeDir="false" afterPath="$PROJECT_DIR$/BlogProject/accounts/api/v1/urls/auth.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BlogProject/accounts/api/v1/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/BlogProject/accounts/api/v1/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BlogProject/core/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/BlogProject/core/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BlogProject/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/BlogProject/requirements.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -172,7 +172,10 @@
       <workItem from="1765826505851" duration="1519000" />
       <workItem from="1765828094728" duration="2660000" />
       <workItem from="1765892880356" duration="1235000" />
-      <workItem from="1765894196221" duration="8986000" />
+      <workItem from="1765894196221" duration="9464000" />
+      <workItem from="1765961848369" duration="6783000" />
+      <workItem from="1765980486456" duration="6777000" />
+      <workItem from="1766045099571" duration="12283000" />
     </task>
     <task id="LOCAL‎−۰۰۰۰۱" summary="feat: set up initial project structure&#10;&#10;- Create 'accounts' and 'blog' Django apps&#10;- Add Dockerfile and docker-compose.yml&#10;- Configure containerized development environment">
       <option name="closed" value="true" />
@@ -314,7 +317,28 @@
       <option name="presentableId" value="LOCAL‎−۰۰۰۲۰" />
       <updated>1765901073408</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL‎−۰۰۰۲۱" summary="refactor(accounts): split models and urls into separate files for better organization&#10;&#10;- Improve code readability and maintainability in large-scale projects">
+      <option name="closed" value="true" />
+      <created>1765906508179</created>
+      <option name="number" value="LOCAL‎−۰۰۰۲۱" />
+      <option name="presentableId" value="LOCAL‎−۰۰۰۲۱" />
+      <updated>1765906508179</updated>
+    </task>
+    <task id="LOCAL‎−۰۰۰۲۲" summary="feat(accounts): add is_verified flag to User model for email verification&#10;&#10;- Introduce is_verified BooleanField with default=False&#10;- Expose field in Django admin for manual verification if needed&#10;- Apply database migration to persist the new field&#10;- Lay groundwork for email confirmation and restricted access flows">
+      <option name="closed" value="true" />
+      <created>1766064299467</created>
+      <option name="number" value="LOCAL‎−۰۰۰۲۲" />
+      <option name="presentableId" value="LOCAL‎−۰۰۰۲۲" />
+      <updated>1766064299467</updated>
+    </task>
+    <task id="LOCAL‎−۰۰۰۲۳" summary="feat(dev): add smtp4dev to docker-compose for local email testing&#10;&#10;- Integrate smtp4dev container as local SMTP/IMAP/POP3 server&#10;- Bind web UI to 127.0.0.1:5000 and SMTP to 127.0.0.1:2525 for security&#10;- Persist email data via smtp4dev-data volume&#10;- Enable safe, offline email verification testing in development">
+      <option name="closed" value="true" />
+      <created>1766065573861</created>
+      <option name="number" value="LOCAL‎−۰۰۰۲۳" />
+      <option name="presentableId" value="LOCAL‎−۰۰۰۲۳" />
+      <updated>1766065573861</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -351,6 +375,9 @@
     <MESSAGE value="feat(accounts): implement v1 API for user registration, token login, and logout&#10;&#10;- Add registration endpoint with password confirmation and validation&#10;- Customize token auth to use email and return user profile info (name, email)&#10;- Implement secure logout by deleting auth token&#10;- Configure DRF TokenAuthentication in settings&#10;- Organize API under /api/v1/ with proper URL namespacing&#10;- Integrate with django.contrib.auth.urls for web-based auth flows" />
     <MESSAGE value="fix(docker): use 'python -m pip' for reliable dependency installation&#10;&#10;- Replace 'pip install' with 'python -m pip install' in Dockerfile&#10;- Ensures consistent pip version aligned with the selected Python interpreter&#10;- Improves build reliability across different base images and environments" />
     <MESSAGE value="feat(accounts): implement JWT-based authentication with user profile and password change&#10;&#10;- Integrate djangorestframework-simplejwt and configure in settings&#10;- Customize JWT login to include email and user_id in response&#10;- Add secure change-password endpoint with old-password verification&#10;- Enable profile retrieval and update via /api/v1/profile/&#10;- Expose standard JWT endpoints: create, refresh, verify" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat(accounts): implement JWT-based authentication with user profile and password change&#10;&#10;- Integrate djangorestframework-simplejwt and configure in settings&#10;- Customize JWT login to include email and user_id in response&#10;- Add secure change-password endpoint with old-password verification&#10;- Enable profile retrieval and update via /api/v1/profile/&#10;- Expose standard JWT endpoints: create, refresh, verify" />
+    <MESSAGE value="refactor(accounts): split models and urls into separate files for better organization&#10;&#10;- Improve code readability and maintainability in large-scale projects" />
+    <MESSAGE value="feat(accounts): add is_verified flag to User model for email verification&#10;&#10;- Introduce is_verified BooleanField with default=False&#10;- Expose field in Django admin for manual verification if needed&#10;- Apply database migration to persist the new field&#10;- Lay groundwork for email confirmation and restricted access flows" />
+    <MESSAGE value="feat(dev): add smtp4dev to docker-compose for local email testing&#10;&#10;- Integrate smtp4dev container as local SMTP/IMAP/POP3 server&#10;- Bind web UI to 127.0.0.1:5000 and SMTP to 127.0.0.1:2525 for security&#10;- Persist email data via smtp4dev-data volume&#10;- Enable safe, offline email verification testing in development" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat(dev): add smtp4dev to docker-compose for local email testing&#10;&#10;- Integrate smtp4dev container as local SMTP/IMAP/POP3 server&#10;- Bind web UI to 127.0.0.1:5000 and SMTP to 127.0.0.1:2525 for security&#10;- Persist email data via smtp4dev-data volume&#10;- Enable safe, offline email verification testing in development" />
   </component>
 </project>
