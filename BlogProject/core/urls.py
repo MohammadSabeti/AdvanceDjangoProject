@@ -37,6 +37,28 @@ schema_view = get_schema_view(
    public=True,
    permission_classes=[permissions.AllowAny],
 )
+# -----------------------------
+# OpenAPI Infos
+# -----------------------------
+info_v1 = openapi.Info(
+    title="Blog Project API (v1)",
+    default_version="v1",
+    description="Public API v1 (blog + custom endpoints)",
+    contact=openapi.Contact(email="mohammad.sabeti2000@gmail.com"),
+    license=openapi.License(name="MIT License"),
+)
+# -----------------------------
+# Swagger schema views (split)
+# -----------------------------
+schema_view_v1 = get_schema_view(
+    info_v1,
+    public=True,
+    permission_classes=[permissions.AllowAny],
+    patterns=[
+        path("api/v1/accounts/", include("accounts.urls")),
+        path("api/v1/blog/", include("blog.urls")),
+    ],
+)
 
 urlpatterns = [
     path("admin/", admin.site.urls),
@@ -48,6 +70,17 @@ urlpatterns = [
     path('swagger/output.json', schema_view.without_ui(cache_timeout=0), name='schema-json'),
     path('swagger/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
     path('redoc/', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
+    # -----------------------------
+    # API routes (versioned)
+    # -----------------------------
+    path("api/v1/accounts/", include("accounts.urls")),
+    path("api/v1/blog/", include("blog.urls")),
+    # -----------------------------
+    # Swagger / ReDoc (split by version)
+    # -----------------------------
+    path("swagger/v1.json", schema_view_v1.without_ui(cache_timeout=0), name="schema-v1-json"),
+    path("swagger/v1/", schema_view_v1.with_ui("swagger", cache_timeout=0), name="schema-v1-swagger-ui"),
+    path("redoc/v1/", schema_view_v1.with_ui("redoc", cache_timeout=0), name="schema-v1-redoc"),
 ]
 
 # serving static and media for development

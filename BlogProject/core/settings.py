@@ -166,6 +166,8 @@ REST_FRAMEWORK = {
 }
 SWAGGER_SETTINGS = {
     "DEFAULT_AUTO_SCHEMA_CLASS": "core.swagger_custom_tag.CustomAutoSchema",
+    "TAGS_SORTER": "alpha",
+    "OPERATIONS_SORTER": "alpha",
 }
 # email configurations
 # EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
