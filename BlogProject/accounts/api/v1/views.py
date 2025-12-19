@@ -19,11 +19,12 @@ from ..utils import EmailThread
 import jwt
 from django.conf import settings
 from accounts.services import generate_activation_token, generate_reset_password_token
-
+from drf_yasg.utils import swagger_auto_schema
 
 class RegistrationApiView(GenericAPIView):
     serializer_class = RegistrationSerializer
 
+    @swagger_auto_schema(tags=['Account Registration'])
     def post(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
@@ -48,6 +49,7 @@ class RegistrationApiView(GenericAPIView):
 class CustomObtainAuthToken(ObtainAuthToken):
     serializer_class = CustomAuthTokenSerializer
 
+    @swagger_auto_schema(tags=['Auth'])
     def post(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
@@ -62,6 +64,7 @@ class CustomObtainAuthToken(ObtainAuthToken):
 class CustomDiscardAuthToken(APIView):
     permission_classes = [IsAuthenticated]
 
+    @swagger_auto_schema(tags=['Auth'])
     def post(self, request):
         request.user.auth_token.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
@@ -70,6 +73,9 @@ class CustomDiscardAuthToken(APIView):
 class  CustomTokenObtainPairView(TokenObtainPairView):
     serializer_class = CustomTokenObtainPairSerializer
 
+    @swagger_auto_schema(tags=['Auth'])
+    def post(self, request, *args, **kwargs):
+        return super().post(request, *args, **kwargs)
 class ChangePasswordApiView(GenericAPIView):
     """
     An endpoint for changing password.
@@ -82,6 +88,7 @@ class ChangePasswordApiView(GenericAPIView):
         obj = self.request.user
         return obj
 
+    @swagger_auto_schema(tags=['Password Management'])
     def put(self, request, *args, **kwargs):
         self.object = self.get_object()
         serializer = self.get_serializer(data=request.data)
@@ -109,16 +116,25 @@ class ProfileApiView(RetrieveUpdateAPIView):
     serializer_class =ProfileSerializer
     queryset = Profile.objects.all()
 
+
     def get_object(self):
         queryset=self.get_queryset()
         obj=get_object_or_404(queryset,user=self.request.user)
         return obj
 
+    @swagger_auto_schema(tags=['Profile'])
+    def get(self, request, *args, **kwargs):
+        return super().get(request, *args, **kwargs)
+
+    @swagger_auto_schema(tags=['Profile'])
+    def put(self, request, *args, **kwargs):
+        return super().put(request, *args, **kwargs)
 
 
 
 class TestEmailSend(GenericAPIView):
 
+    @swagger_auto_schema(tags=['Test / Debug'])
     def get(self, request, *args, **kwargs):
         # only for test
         email="mohammadi.tik@gmail.com"
@@ -141,6 +157,7 @@ class TestEmailSend(GenericAPIView):
 
 class ActivationApiView(APIView):
 
+    @swagger_auto_schema(tags=['Account Activation'])
     def get(self, request, token, *args, **kwargs):
         try:
             token_decoded=jwt.decode(token, settings.SECRET_KEY, algorithms=["HS256"])
@@ -163,6 +180,7 @@ class ActivationApiView(APIView):
 class ActivationResendApiView(GenericAPIView):
     serializer_class = ActivationResendSerializer
 
+    @swagger_auto_schema(tags=['Account Activation'])
     def post(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
@@ -184,6 +202,7 @@ class ActivationResendApiView(GenericAPIView):
 class ResetPasswordRequestApiView(GenericAPIView):
     serializer_class = ResetPasswordRequestSerializer
 
+    @swagger_auto_schema(tags=['Password Management'])
     def post(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
@@ -212,6 +231,7 @@ class ResetPasswordRequestApiView(GenericAPIView):
 class ResetPasswordConfirmApiView(GenericAPIView):
     serializer_class = ResetPasswordConfirmSerializer
 
+    @swagger_auto_schema(tags=['Password Management'])
     def post(self, request, token, *args, **kwargs):
         try:
             payload = jwt.decode(token, settings.SECRET_KEY, algorithms=["HS256"])
