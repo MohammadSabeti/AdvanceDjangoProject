@@ -1,5 +1,5 @@
 
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import IsAuthenticated, IsAdminUser
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.reverse import reverse
@@ -7,12 +7,8 @@ from rest_framework.views import APIView
 from rest_framework.generics import GenericAPIView, get_object_or_404, RetrieveUpdateAPIView
 from rest_framework.authtoken.models import Token
 from rest_framework.authtoken.views import ObtainAuthToken
-from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework_simplejwt.views import TokenObtainPairView
-from ...models import User,Profile
-from .serializer import (RegistrationSerializer, CustomAuthTokenSerializer,
-                         CustomTokenObtainPairSerializer, ChangePasswordSerializer, ProfileSerializer,
-                         ActivationResendSerializer, ResetPasswordRequestSerializer, ResetPasswordConfirmSerializer)
+from .serializer import *
 from django.core.mail import send_mail as send_mail_django_core
 from mail_templated import EmailMessage
 from ..utils import EmailThread
@@ -132,8 +128,8 @@ class ProfileApiView(RetrieveUpdateAPIView):
 
 
 
-class TestEmailSend(GenericAPIView):
-
+class TestEmailSend(APIView):
+    permission_classes = [IsAdminUser]
     @swagger_auto_schema(tags=['Test / Debug'])
     def get(self, request, *args, **kwargs):
         # only for test

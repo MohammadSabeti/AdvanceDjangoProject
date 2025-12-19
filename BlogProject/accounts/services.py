@@ -1,6 +1,6 @@
 from rest_framework_simplejwt.tokens import RefreshToken
 from django.conf import settings
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta,timezone
 import jwt
 
 def generate_activation_token(user):
@@ -20,6 +20,6 @@ def generate_reset_password_token(user):
     payload = {
         'user_id': user.id,
         'type': 'reset_password',
-        'exp': datetime.now() + timedelta(minutes=15)
+        'exp': datetime.now(tz=timezone.utc) + timedelta(minutes=15)
     }
     return jwt.encode(payload, settings.SECRET_KEY, algorithm='HS256')
