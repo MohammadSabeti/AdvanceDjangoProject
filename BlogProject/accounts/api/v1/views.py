@@ -12,13 +12,14 @@ from rest_framework_simplejwt.views import TokenObtainPairView
 from ...models import User,Profile
 from .serializer import (RegistrationSerializer, CustomAuthTokenSerializer,
                          CustomTokenObtainPairSerializer, ChangePasswordSerializer, ProfileSerializer,
-                         ActivationResendSerializer)
+                         ActivationResendSerializer, ResetPasswordRequestSerializer, ResetPasswordConfirmSerializer)
 from django.core.mail import send_mail as send_mail_django_core
 from mail_templated import EmailMessage
 from ..utils import EmailThread
 import jwt
 from django.conf import settings
-from accounts.services import generate_activation_token
+from accounts.services import generate_activation_token, generate_reset_password_token
+
 
 class RegistrationApiView(GenericAPIView):
     serializer_class = RegistrationSerializer
@@ -180,8 +181,57 @@ class ActivationResendApiView(GenericAPIView):
 
 
 
+class ResetPasswordRequestApiView(GenericAPIView):
+    serializer_class = ResetPasswordRequestSerializer
 
+    def post(self, request, *args, **kwargs):
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
 
+        user = serializer.validated_data.get('user')
+
+        if user:
+            token = generate_reset_password_token(user)
+            reset_link = request.build_absolute_uri(
+                reverse('accounts:api-v1:reset-password-confirm', kwargs={'token': token})
+            )
+
+            email_obj = EmailMessage(
+                template_name='email/reset_password_email.html',
+                context={'reset_link': reset_link},
+                from_email=settings.DEFAULT_FROM_EMAIL,
+                to=[user.email]
+            )
+            EmailThread(email_obj).start()
+
+        return Response(
+            {'detail': 'If the email exists, a reset link has been sent.'},
+            status=status.HTTP_200_OK
+        )
+
+class ResetPasswordConfirmApiView(GenericAPIView):
+    serializer_class = ResetPasswordConfirmSerializer
+
+    def post(self, request, token, *args, **kwargs):
+        try:
+            payload = jwt.decode(token, settings.SECRET_KEY, algorithms=["HS256"])
+            if payload.get('type') != 'reset_password':
+                raise jwt.InvalidTokenError
+            user_id = payload.get('user_id')
+        except jwt.ExpiredSignatureError:
+            return Response({'detail': 'Token expired'}, status=status.HTTP_400_BAD_REQUEST)
+        except jwt.InvalidTokenError:
+            return Response({'detail': 'Invalid token'}, status=status.HTTP_400_BAD_REQUEST)
+
+        user = get_object_or_404(User, id=user_id)
+
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+
+        user.set_password(serializer.validated_data['password'])
+        user.save()
+
+        return Response({'detail': 'Password reset successfully'}, status=status.HTTP_200_OK)
 
 
 

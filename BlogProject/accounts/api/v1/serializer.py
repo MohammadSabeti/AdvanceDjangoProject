@@ -121,3 +121,28 @@ class ActivationResendSerializer(serializers.Serializer):
             raise serializers.ValidationError({'detail': 'Your account has been verified and activated.'})
         attrs['user']=user_obj
         return super().validate(attrs)
+
+class ResetPasswordRequestSerializer(serializers.Serializer):
+    email = serializers.EmailField()
+
+    def validate(self, attrs):
+        email = attrs.get('email')
+        user = User.objects.filter(email=email).first()
+        attrs['user'] = user  # ممکنه None باشه
+        return attrs
+
+class ResetPasswordConfirmSerializer(serializers.Serializer):
+    password = serializers.CharField(write_only=True)
+    password1 = serializers.CharField(write_only=True)
+
+    def validate(self, attrs):
+        if attrs['password'] != attrs['password1']:
+            raise serializers.ValidationError({"detail": "Passwords don't match"})
+
+        try:
+            validate_password(attrs['password'])
+        except exceptions.ValidationError as e:
+            raise serializers.ValidationError({"password": list(e.messages)})
+
+        return attrs
+

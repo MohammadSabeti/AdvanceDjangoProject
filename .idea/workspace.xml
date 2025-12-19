@@ -4,16 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3ec5e726-6c18-4f7f-8cf6-64d7d25b3359" name="Changes" comment="feat(dev): add smtp4dev to docker-compose for local email testing&#10;&#10;- Integrate smtp4dev container as local SMTP/IMAP/POP3 server&#10;- Bind web UI to 127.0.0.1:5000 and SMTP to 127.0.0.1:2525 for security&#10;- Persist email data via smtp4dev-data volume&#10;- Enable safe, offline email verification testing in development">
-      <change afterPath="$PROJECT_DIR$/BlogProject/accounts/api/utils.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BlogProject/accounts/services.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BlogProject/templates/email/activation_email.html" afterDir="false" />
+    <list default="true" id="3ec5e726-6c18-4f7f-8cf6-64d7d25b3359" name="Changes" comment="feat(accounts): implement secure email-based account activation flow&#10;&#10;- Add activation_email.html template using django-mail-templated&#10;- Generate JWT-based activation tokens linked to user ID&#10;- Block login for unverified users in both JWT and Token auth&#10;- Implement activation/resend APIs with proper validation&#10;- Send emails asynchronously via EmailThread to avoid blocking&#10;- Integrate with smtp4dev for safe local email testing">
+      <change afterPath="$PROJECT_DIR$/BlogProject/templates/email/reset_password_email.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BlogProject/accounts/api/v1/serializer.py" beforeDir="false" afterPath="$PROJECT_DIR$/BlogProject/accounts/api/v1/serializer.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BlogProject/accounts/api/v1/urls/auth.py" beforeDir="false" afterPath="$PROJECT_DIR$/BlogProject/accounts/api/v1/urls/auth.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BlogProject/accounts/api/v1/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/BlogProject/accounts/api/v1/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BlogProject/core/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/BlogProject/core/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BlogProject/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/BlogProject/requirements.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BlogProject/accounts/services.py" beforeDir="false" afterPath="$PROJECT_DIR$/BlogProject/accounts/services.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -175,7 +172,7 @@
       <workItem from="1765894196221" duration="9464000" />
       <workItem from="1765961848369" duration="6783000" />
       <workItem from="1765980486456" duration="6777000" />
-      <workItem from="1766045099571" duration="12283000" />
+      <workItem from="1766045099571" duration="15549000" />
     </task>
     <task id="LOCAL‎−۰۰۰۰۱" summary="feat: set up initial project structure&#10;&#10;- Create 'accounts' and 'blog' Django apps&#10;- Add Dockerfile and docker-compose.yml&#10;- Configure containerized development environment">
       <option name="closed" value="true" />
@@ -338,7 +335,14 @@
       <option name="presentableId" value="LOCAL‎−۰۰۰۲۳" />
       <updated>1766065573861</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL‎−۰۰۰۲۴" summary="feat(accounts): implement secure email-based account activation flow&#10;&#10;- Add activation_email.html template using django-mail-templated&#10;- Generate JWT-based activation tokens linked to user ID&#10;- Block login for unverified users in both JWT and Token auth&#10;- Implement activation/resend APIs with proper validation&#10;- Send emails asynchronously via EmailThread to avoid blocking&#10;- Integrate with smtp4dev for safe local email testing">
+      <option name="closed" value="true" />
+      <created>1766069292651</created>
+      <option name="number" value="LOCAL‎−۰۰۰۲۴" />
+      <option name="presentableId" value="LOCAL‎−۰۰۰۲۴" />
+      <updated>1766069292651</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -378,6 +382,18 @@
     <MESSAGE value="refactor(accounts): split models and urls into separate files for better organization&#10;&#10;- Improve code readability and maintainability in large-scale projects" />
     <MESSAGE value="feat(accounts): add is_verified flag to User model for email verification&#10;&#10;- Introduce is_verified BooleanField with default=False&#10;- Expose field in Django admin for manual verification if needed&#10;- Apply database migration to persist the new field&#10;- Lay groundwork for email confirmation and restricted access flows" />
     <MESSAGE value="feat(dev): add smtp4dev to docker-compose for local email testing&#10;&#10;- Integrate smtp4dev container as local SMTP/IMAP/POP3 server&#10;- Bind web UI to 127.0.0.1:5000 and SMTP to 127.0.0.1:2525 for security&#10;- Persist email data via smtp4dev-data volume&#10;- Enable safe, offline email verification testing in development" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat(dev): add smtp4dev to docker-compose for local email testing&#10;&#10;- Integrate smtp4dev container as local SMTP/IMAP/POP3 server&#10;- Bind web UI to 127.0.0.1:5000 and SMTP to 127.0.0.1:2525 for security&#10;- Persist email data via smtp4dev-data volume&#10;- Enable safe, offline email verification testing in development" />
+    <MESSAGE value="feat(accounts): implement secure email-based account activation flow&#10;&#10;- Add activation_email.html template using django-mail-templated&#10;- Generate JWT-based activation tokens linked to user ID&#10;- Block login for unverified users in both JWT and Token auth&#10;- Implement activation/resend APIs with proper validation&#10;- Send emails asynchronously via EmailThread to avoid blocking&#10;- Integrate with smtp4dev for safe local email testing" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat(accounts): implement secure email-based account activation flow&#10;&#10;- Add activation_email.html template using django-mail-templated&#10;- Generate JWT-based activation tokens linked to user ID&#10;- Block login for unverified users in both JWT and Token auth&#10;- Implement activation/resend APIs with proper validation&#10;- Send emails asynchronously via EmailThread to avoid blocking&#10;- Integrate with smtp4dev for safe local email testing" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/BlogProject/accounts/services.py</url>
+          <line>22</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
