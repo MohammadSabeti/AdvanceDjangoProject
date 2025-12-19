@@ -25,18 +25,6 @@ from rest_framework import permissions
 from drf_yasg.views import get_schema_view
 from drf_yasg import openapi
 
-schema_view = get_schema_view(
-   openapi.Info(
-      title="Blog Project API",
-      default_version='v1',
-      description="This is a test api for advanced blog project",
-      terms_of_service="https://www.google.com/policies/terms/",
-      contact=openapi.Contact(email="mohammad.sabeti2000@gmail.com"),
-      license=openapi.License(name="MIT License"),
-   ),
-   public=True,
-   permission_classes=[permissions.AllowAny],
-)
 # -----------------------------
 # OpenAPI Infos
 # -----------------------------
@@ -44,6 +32,14 @@ info_v1 = openapi.Info(
     title="Blog Project API (v1)",
     default_version="v1",
     description="Public API v1 (blog + custom endpoints)",
+    contact=openapi.Contact(email="mohammad.sabeti2000@gmail.com"),
+    license=openapi.License(name="MIT License"),
+)
+
+info_v2 = openapi.Info(
+    title="Blog Project API (v2)",
+    default_version="v2",
+    description="Auth API v2 (Djoser + JWT)",
     contact=openapi.Contact(email="mohammad.sabeti2000@gmail.com"),
     license=openapi.License(name="MIT License"),
 )
@@ -60,27 +56,40 @@ schema_view_v1 = get_schema_view(
     ],
 )
 
+schema_view_v2 = get_schema_view(
+    info_v2,
+    public=True,
+    permission_classes=[permissions.AllowAny],
+    patterns=[
+        path("api/v2/", include("djoser.urls")),
+        path("api/v2/", include("djoser.urls.jwt")),
+    ],)
+
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("api-auth/", include("rest_framework.urls")),
-    path("accounts/", include("accounts.urls")),
-    path("blog/", include("blog.urls")),
     path("api-docs/", include_docs_urls(title='api sample')),
 
-    path('swagger/output.json', schema_view.without_ui(cache_timeout=0), name='schema-json'),
-    path('swagger/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
-    path('redoc/', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
     # -----------------------------
     # API routes (versioned)
     # -----------------------------
     path("api/v1/accounts/", include("accounts.urls")),
     path("api/v1/blog/", include("blog.urls")),
+
+    # v2 auth (djoser)
+    path("api/v2/", include("djoser.urls")),
+    path("api/v2/", include("djoser.urls.jwt")),
+
     # -----------------------------
     # Swagger / ReDoc (split by version)
     # -----------------------------
     path("swagger/v1.json", schema_view_v1.without_ui(cache_timeout=0), name="schema-v1-json"),
     path("swagger/v1/", schema_view_v1.with_ui("swagger", cache_timeout=0), name="schema-v1-swagger-ui"),
     path("redoc/v1/", schema_view_v1.with_ui("redoc", cache_timeout=0), name="schema-v1-redoc"),
+
+    path("swagger/v2.json", schema_view_v2.without_ui(cache_timeout=0), name="schema-v2-json"),
+    path("swagger/v2/", schema_view_v2.with_ui("swagger", cache_timeout=0), name="schema-v2-swagger-ui"),
+    path("redoc/v2/", schema_view_v2.with_ui("redoc", cache_timeout=0), name="schema-v2-redoc"),
 ]
 
 # serving static and media for development

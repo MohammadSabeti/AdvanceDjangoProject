@@ -16,4 +16,5 @@ markdown
 coreapi==2.3.3
 djangorestframework-simplejwt
 django-mail-templated
+djoser
 # development module
