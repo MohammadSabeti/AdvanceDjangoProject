@@ -3,8 +3,8 @@ from .views import *
 from rest_framework.routers import DefaultRouter
 
 router = DefaultRouter()
-router.register('post',PostViewSet)
-router.register('category',CategoryViewSet)
+router.register('post',PostViewSet, basename='Posts')
+router.register('category',CategoryViewSet, basename='Categories')
 app_name = 'api-v1'
 urlpatterns = [
     path("", include(router.urls)),

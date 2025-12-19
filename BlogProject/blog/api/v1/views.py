@@ -15,9 +15,21 @@ from .permissions import IsOwnerOrReadonly
 from .paginations import PostPagination
 from .serializer import PostSerializer, CategorySerializer
 from ...models import Post, Category
-
+from drf_yasg.utils import swagger_auto_schema
 
 # Function Based Views
+@swagger_auto_schema(
+    method='get',
+    tags=['Posts (FBV)'],
+    operation_summary="List posts",
+    operation_description="Retrieve a list of all blog posts"
+)
+@swagger_auto_schema(
+    method='post',
+    tags=['Posts (FBV)'],
+    operation_summary="Create post",
+    operation_description="Create a new blog post"
+)
 @api_view(['GET', 'POST'])
 @permission_classes([IsAuthenticatedOrReadOnly])
 def post_list(request):
@@ -44,6 +56,24 @@ def post_list(request):
 
 
 # ordering is required
+@swagger_auto_schema(
+    methods=['get'],
+    tags=['Posts (FBV)'],
+    operation_summary="Retrieve post",
+    operation_description="Retrieve a post by its ID"
+)
+@swagger_auto_schema(
+    methods=['put'],
+    tags=['Posts (FBV)'],
+    operation_summary="Update post",
+    operation_description="Update a post by its ID"
+)
+@swagger_auto_schema(
+    methods=['delete'],
+    tags=['Posts (FBV)'],
+    operation_summary="Delete post",
+    operation_description="Delete a post by its ID"
+)
 @api_view(['GET', 'PUT', 'DELETE'])
 @permission_classes([IsAuthenticatedOrReadOnly])
 def post_detail(request, id):
@@ -79,12 +109,22 @@ class PostListAPIView(APIView):
     permission_classes = [IsAuthenticatedOrReadOnly]
     serializer_class = PostSerializer
 
+    @swagger_auto_schema(
+        tags=['Posts (APIView)'],
+        operation_summary="List posts",
+        operation_description="Retrieve list of posts using APIView"
+    )
     def get(self, request):
         """ Retrieving a list of all posts  """
         posts = Post.objects.all()
         post_serializer = self.serializer_class(posts, many=True)
         return Response(post_serializer.data)
 
+    @swagger_auto_schema(
+        tags=['Posts (APIView)'],
+        operation_summary="Create post",
+        operation_description="Create a new post using APIView"
+    )
     def post(self, request):
         """ Creating a new post with provided data """
         serializer = self.serializer_class(data=request.data)
@@ -100,12 +140,22 @@ class PostDetailAPIView(APIView):
     permission_classes = [IsAuthenticatedOrReadOnly]
     serializer_class = PostSerializer
 
+    @swagger_auto_schema(
+        tags=['Posts (APIView)'],
+        operation_summary='Retrieve post',
+        operation_description="Retrieve a post using APIView"
+    )
     def get(self, request, id):
         """ Retrieving a post  """
         post = get_object_or_404(Post, id=id)
         post_serializer = self.serializer_class(post)
         return Response(post_serializer.data)
 
+    @swagger_auto_schema(
+        tags=['Posts (APIView)'],
+        operation_summary='Update post',
+        operation_description="Update a post using APIView"
+    )
     def put(self, request, id):
         """ Updating a post  """
         post = get_object_or_404(Post, id=id)
@@ -114,6 +164,11 @@ class PostDetailAPIView(APIView):
         serializer.save()
         return Response(serializer.data)
 
+    @swagger_auto_schema(
+        tags=['Posts (APIView)'],
+        operation_summary='Delete post',
+        operation_description="Delete a post using APIView"
+    )
     def delete(self, request, id):
         """ Deleting a post  """
         post = get_object_or_404(Post, id=id)
@@ -125,24 +180,48 @@ class PostDetailAPIView(APIView):
 
 # GenericAPIView,ListModelMixin,CreateModelMixin == ListCreateAPIView
 class PostListGenericAPIView(ListCreateAPIView):
-    """
-    List all posts, or create a new post.
-    """
+
     permission_classes = [IsAuthenticatedOrReadOnly]
     serializer_class = PostSerializer
     queryset = Post.objects.all()
+    swagger_tags = ["Posts (ListCreateAPIView)"]
+
+    swagger_summary = {
+        "list": "List posts",
+        "create": "Create post",
+    }
+
+    swagger_description = {
+        "list": "List posts using generic views",
+        "create": "Create post using generic views",
+    }
+
 
 
 # (GenericAPIView,RetrieveModelMixin,UpdateModelMixin,
 # DestroyModelMixin) == RetrieveUpdateDestroyAPIView
 class PostDetailGenericAPIView(RetrieveUpdateDestroyAPIView):
-    """
-       Retrieve, update or delete a post instance.
-       """
+
     permission_classes = [IsAuthenticatedOrReadOnly]
     serializer_class = PostSerializer
     queryset = Post.objects.all()
     lookup_field = 'id'
+    swagger_tags = ["Posts (RetrieveUpdateDestroyAPIView)"]
+
+    swagger_summary = {
+        "retrieve": "Retrieve post",
+        "update": "Update post",
+        "partial_update": "Partial update post",
+        "destroy": "Delete post"
+    }
+
+    swagger_description = {
+        "retrieve": "Retrieve a post by its ID",
+        "update": "Update a post by its ID",
+        "partial_update": "Partially update a post",
+        "destroy": "Delete a post"
+    }
+
 
 
 class PostViewSet(ModelViewSet):
@@ -157,6 +236,27 @@ class PostViewSet(ModelViewSet):
     search_fields = ["title", "content"]
     ordering_fields = ["published_date"]
     pagination_class = PostPagination
+    swagger_tags = ["Posts (ModelViewSet)"]
+
+    swagger_summary = {
+        "list": "List posts",
+        "retrieve": "Retrieve post",
+        "create": "Create post",
+        "update": "Update post",
+        "partial_update": "Partial update post",
+        "destroy": "Delete post",
+        "get_ok": "Health check",
+    }
+
+    swagger_description = {
+        "list": "Retrieve a list of all blog posts",
+        "retrieve": "Retrieve a post by its ID",
+        "create": "Create a new blog post",
+        "update": "Update a post by its ID",
+        "partial_update": "Partially update a post",
+        "destroy": "Delete a post using viewsets",
+        "get_ok": "Simple test endpoint",
+    }
 
     @action(methods=['get'], detail=False)
     def get_ok(self, request):
@@ -167,3 +267,22 @@ class CategoryViewSet(ModelViewSet):
     permission_classes = [IsAuthenticatedOrReadOnly]
     serializer_class = CategorySerializer
     queryset = Category.objects.all()
+    swagger_tags = ['Categories (ModelViewSet)']
+
+    swagger_summary = {
+        "list": "List categories",
+        "retrieve": "Retrieve category",
+        "create": "Create category",
+        "update": "Update category",
+        "partial_update": "Partial update category",
+        "destroy": "Delete category"
+    }
+
+    swagger_description = {
+        "list": "Retrieve a list of all blog categories",
+        "retrieve": "Retrieve a category by its ID",
+        "create": "Create a new category post",
+        "update": "Update a category by its ID",
+        "partial_update": "Partially update a category",
+        "destroy": "Delete a category using viewsets"
+    }
