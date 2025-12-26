@@ -4,10 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3ec5e726-6c18-4f7f-8cf6-64d7d25b3359" name="Changes" comment="feat(auth): integrate Djoser as standardized v2 authentication API&#10;&#10;- Install and configure djoser for robust, production-ready auth&#10;- Mount Djoser endpoints under /api/v2/ for clear versioning&#10;- Isolate v2 docs in Swagger with dedicated tags/prefix for clarity&#10;- Lay foundation for advanced features: social auth, token refresh, etc.">
+    <list default="true" id="3ec5e726-6c18-4f7f-8cf6-64d7d25b3359" name="Changes" comment="feat(tests): add comprehensive test suite for blog app&#10;&#10;- Implement model tests for Post and Category creation&#10;- Add form validation tests for PostForm (valid/invalid cases)&#10;- Cover URL resolution for all blog views (index, list, detail)&#10;- Write view tests for authenticated vs anonymous access&#10;- Use proper TestCase/SimpleTestCase separation and setUp for DRY">
+      <change afterPath="$PROJECT_DIR$/BlogProject/pytest.ini" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BlogProject/blog/tests.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/BlogProject/blog/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/BlogProject/blog/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BlogProject/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/BlogProject/requirements.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -196,7 +197,7 @@
       <workItem from="1766045099571" duration="35974000" />
       <workItem from="1766227228012" duration="6377000" />
       <workItem from="1766410817856" duration="8937000" />
-      <workItem from="1766638141264" duration="2698000" />
+      <workItem from="1766638141264" duration="7959000" />
     </task>
     <task id="LOCAL‎−۰۰۰۰۱" summary="feat: set up initial project structure&#10;&#10;- Create 'accounts' and 'blog' Django apps&#10;- Add Dockerfile and docker-compose.yml&#10;- Configure containerized development environment">
       <option name="closed" value="true" />
@@ -408,7 +409,14 @@
       <option name="presentableId" value="LOCAL‎−۰۰۰۳۰" />
       <updated>1766176833462</updated>
     </task>
-    <option name="localTasksCounter" value="31" />
+    <task id="LOCAL‎−۰۰۰۳۱" summary="feat(tests): add comprehensive test suite for blog app&#10;&#10;- Implement model tests for Post and Category creation&#10;- Add form validation tests for PostForm (valid/invalid cases)&#10;- Cover URL resolution for all blog views (index, list, detail)&#10;- Write view tests for authenticated vs anonymous access&#10;- Use proper TestCase/SimpleTestCase separation and setUp for DRY">
+      <option name="closed" value="true" />
+      <created>1766640957054</created>
+      <option name="number" value="LOCAL‎−۰۰۰۳۱" />
+      <option name="presentableId" value="LOCAL‎−۰۰۰۳۱" />
+      <updated>1766640957054</updated>
+    </task>
+    <option name="localTasksCounter" value="32" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -426,7 +434,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="feat(blog): implement CRUD views and templates for blog posts&#10;&#10;- Add class-based views: list, detail, create, update, delete&#10;- Protect editing views with LoginRequiredMixin&#10;- Enforce object-level permissions via 'blog.view_post'&#10;- Use PostForm for consistent input validation&#10;- Include basic templates and configure URL routing&#10;- Add sample redirect view to maktabkhooneh (for demo)" />
     <MESSAGE value="feat(blog): add DRF-based API v1 for blog posts&#10;&#10;- Install and configure Django REST Framework in settings&#10;- Implement PostSerializer for JSON representation&#10;- Add function-based API views: post_list, post_detail&#10;- Configure URL routing under /api/v1/&#10;- Include sample data and media for local testing" />
     <MESSAGE value="feat(blog): secure API with authentication and permission policies&#10;&#10;- Configure DEFAULT_AUTHENTICATION_CLASSES and DEFAULT_PERMISSION_CLASSES in settings&#10;- Refactor serializers to use ModelSerializer for maintainability&#10;- Enable DRF browsable API login via /api-auth/&#10;- Apply IsAuthenticatedOrReadOnly to post views: read public, write protected" />
     <MESSAGE value="refactor(blog): migrate API views to class-based APIView with full CRUD&#10;&#10;- Replace function-based views with PostList and PostDetail APIView classes&#10;- Implement GET, POST, PUT, DELETE with proper error handling&#10;- Use get_object_or_404 for 404 responses and raise_exception for validation&#10;- Maintain IsAuthenticatedOrReadOnly permission policy&#10;- Centralize serializer via serializer_class attribute" />
@@ -451,7 +458,8 @@
     <MESSAGE value="fix(accounts): resolve TestEmailSend view reliability issue" />
     <MESSAGE value="feat(docs): enhance Swagger documentation for accounts and blog APIs&#10;&#10;- Add consistent swagger_tags to all views for logical grouping&#10;- Provide clear operation summaries and descriptions&#10;- Standardize API documentation across both apps using CustomAutoSchema&#10;- Improve discoverability and usability of endpoints in Swagger UI" />
     <MESSAGE value="feat(auth): integrate Djoser as standardized v2 authentication API&#10;&#10;- Install and configure djoser for robust, production-ready auth&#10;- Mount Djoser endpoints under /api/v2/ for clear versioning&#10;- Isolate v2 docs in Swagger with dedicated tags/prefix for clarity&#10;- Lay foundation for advanced features: social auth, token refresh, etc." />
-    <option name="LAST_COMMIT_MESSAGE" value="feat(auth): integrate Djoser as standardized v2 authentication API&#10;&#10;- Install and configure djoser for robust, production-ready auth&#10;- Mount Djoser endpoints under /api/v2/ for clear versioning&#10;- Isolate v2 docs in Swagger with dedicated tags/prefix for clarity&#10;- Lay foundation for advanced features: social auth, token refresh, etc." />
+    <MESSAGE value="feat(tests): add comprehensive test suite for blog app&#10;&#10;- Implement model tests for Post and Category creation&#10;- Add form validation tests for PostForm (valid/invalid cases)&#10;- Cover URL resolution for all blog views (index, list, detail)&#10;- Write view tests for authenticated vs anonymous access&#10;- Use proper TestCase/SimpleTestCase separation and setUp for DRY" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat(tests): add comprehensive test suite for blog app&#10;&#10;- Implement model tests for Post and Category creation&#10;- Add form validation tests for PostForm (valid/invalid cases)&#10;- Cover URL resolution for all blog views (index, list, detail)&#10;- Write view tests for authenticated vs anonymous access&#10;- Use proper TestCase/SimpleTestCase separation and setUp for DRY" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
