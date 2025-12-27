@@ -15,22 +15,48 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 15
 
+    env:
+      # Single source of truth for compose file location
+      COMPOSE_FILE: BlogProject/.devcontainer/docker-compose.yml
+
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
-      # Use the compose file that lives under BlogProject/.devcontainer
+      # Create BlogProject/.env because compose env_file is "../.env" relative to BlogProject/.devcontainer/
+      - name: Create CI .env file
+        run: |
+          cat > BlogProject/.env << 'EOF'
+          # Django
+          DEBUG=0
+          DJANGO_SECRET_KEY=${{ secrets.DJANGO_SECRET_KEY }}
+          ALLOWED_HOSTS=localhost,127.0.0.1
+
+          # Database (match your docker-compose values)
+          POSTGRES_USER=postgres
+          POSTGRES_PASSWORD=${{ secrets.POSTGRES_PASSWORD }}
+          POSTGRES_DB=AdvancedBlogProject
+          DB_HOST=db
+          DB_PORT=5432
+
+          # Email (optional; include only if your app needs it during tests)
+          EMAIL_HOST=smtp4dev
+          EMAIL_PORT=25
+          EMAIL_HOST_USER=${{ secrets.EMAIL_HOST_USER }}
+          EMAIL_HOST_PASSWORD=${{ secrets.EMAIL_HOST_PASSWORD }}
+          EOF
+
       - name: Build & start services
         run: |
-          docker compose -f BlogProject/.devcontainer/docker-compose.yml up -d --build
-          docker compose -f BlogProject/.devcontainer/docker-compose.yml ps
+          docker compose -f "$COMPOSE_FILE" up -d --build
+          docker compose -f "$COMPOSE_FILE" ps
 
-      # Wait for Postgres to accept connections (no compose healthcheck required)
+      # Wait for Postgres (no healthcheck needed in compose)
       - name: Wait for Postgres
         run: |
           echo "Waiting for Postgres to be ready..."
           for i in {1..30}; do
-            if docker compose -f BlogProject/.devcontainer/docker-compose.yml exec -T db \
+            if docker compose -f "$COMPOSE_FILE" exec -T db \
               pg_isready -U postgres -d AdvancedBlogProject; then
               echo "Postgres is ready."
               exit 0
@@ -38,23 +64,21 @@ jobs:
             sleep 2
           done
           echo "Postgres did not become ready in time."
-          docker compose -f BlogProject/.devcontainer/docker-compose.yml logs --no-color db
+          docker compose -f "$COMPOSE_FILE" logs --no-color db
           exit 1
 
-      # Run lint and tests inside the backend container
+      # Run lint + tests inside backend container
       - name: Run lint and tests
         run: |
-          docker compose -f BlogProject/.devcontainer/docker-compose.yml exec -T backend \
+          docker compose -f "$COMPOSE_FILE" exec -T backend \
             sh -c "flake8 && pytest -q"
 
-      # Print logs on failure for easier debugging
       - name: Show logs on failure
         if: failure()
         run: |
-          docker compose -f BlogProject/.devcontainer/docker-compose.yml logs --no-color
+          docker compose -f "$COMPOSE_FILE" logs --no-color
 
-      # Always cleanup containers/volumes to keep runner clean
       - name: Shutdown
         if: always()
         run: |
-          docker compose -f BlogProject/.devcontainer/docker-compose.yml down -v
+          docker compose -f "$COMPOSE_FILE" down -v
