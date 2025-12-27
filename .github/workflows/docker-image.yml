@@ -22,9 +22,13 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      # Create BlogProject/.env (compose uses env_file: ../.env relative to .devcontainer/)
       - name: Create CI .env file
+        shell: bash
         run: |
-          cat > BlogProject/.env << 'EOF'
+          set -euo pipefail
+
+          cat > BlogProject/.env <<EOF
           DEBUG=${{ secrets.DEBUG }}
           SECRET_KEY=${{ secrets.SECRET_KEY }}
           ALLOWED_HOSTS=${{ secrets.ALLOWED_HOSTS }}
@@ -36,15 +40,26 @@ jobs:
           DB_PASSWORD=${{ secrets.DB_PASSWORD }}
           DB_HOST=${{ secrets.DB_HOST }}
           DB_PORT=${{ secrets.DB_PORT }}
-		  EOF
+          EOF
+
+      # Fail fast if required keys are missing (without printing secret values)
+      - name: Verify required env vars
+        shell: bash
+        run: |
+          set -euo pipefail
+          grep -q '^SECRET_KEY=' BlogProject/.env
+          grep -q '^DB_HOST=' BlogProject/.env
+          grep -q '^DB_NAME=' BlogProject/.env
 
       - name: Build & start services
         run: |
           docker compose -f "$COMPOSE_FILE" up -d --build
           docker compose -f "$COMPOSE_FILE" ps
 
+      # Wait for Postgres (works even without a healthcheck in compose)
       - name: Wait for Postgres
         run: |
+          set -euo pipefail
           echo "Waiting for Postgres to be ready..."
           for i in {1..30}; do
             if docker compose -f "$COMPOSE_FILE" exec -T db \
@@ -60,11 +75,12 @@ jobs:
 
       # Diagnostics: show why backend is not running (if it crashes)
       - name: Show service status
+        if: failure() || always()
         run: |
           docker compose -f "$COMPOSE_FILE" ps
           docker compose -f "$COMPOSE_FILE" logs --no-color --tail=200 backend || true
 
-      # Run lint/tests in a one-off container (works even if backend service is not running)
+      # Run lint/tests in a one-off container (does not require backend service to be running)
       - name: Run lint and tests
         run: |
           docker compose -f "$COMPOSE_FILE" run --rm -T backend \
