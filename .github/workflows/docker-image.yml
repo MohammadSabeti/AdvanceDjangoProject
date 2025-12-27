@@ -16,34 +16,24 @@ jobs:
     timeout-minutes: 15
 
     env:
-      # Single source of truth for compose file location
       COMPOSE_FILE: BlogProject/.devcontainer/docker-compose.yml
 
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
-      # Create BlogProject/.env because compose env_file is "../.env" relative to BlogProject/.devcontainer/
       - name: Create CI .env file
         run: |
           cat > BlogProject/.env << 'EOF'
-          # Django
           DEBUG=0
           DJANGO_SECRET_KEY=${{ secrets.DJANGO_SECRET_KEY }}
           ALLOWED_HOSTS=localhost,127.0.0.1
 
-          # Database (match your docker-compose values)
           POSTGRES_USER=postgres
           POSTGRES_PASSWORD=${{ secrets.POSTGRES_PASSWORD }}
           POSTGRES_DB=AdvancedBlogProject
           DB_HOST=db
           DB_PORT=5432
-
-          # Email (optional; include only if your app needs it during tests)
-          EMAIL_HOST=smtp4dev
-          EMAIL_PORT=25
-          EMAIL_HOST_USER=${{ secrets.EMAIL_HOST_USER }}
-          EMAIL_HOST_PASSWORD=${{ secrets.EMAIL_HOST_PASSWORD }}
           EOF
 
       - name: Build & start services
@@ -51,7 +41,6 @@ jobs:
           docker compose -f "$COMPOSE_FILE" up -d --build
           docker compose -f "$COMPOSE_FILE" ps
 
-      # Wait for Postgres (no healthcheck needed in compose)
       - name: Wait for Postgres
         run: |
           echo "Waiting for Postgres to be ready..."
@@ -67,10 +56,16 @@ jobs:
           docker compose -f "$COMPOSE_FILE" logs --no-color db
           exit 1
 
-      # Run lint + tests inside backend container
+      # Diagnostics: show why backend is not running (if it crashes)
+      - name: Show service status
+        run: |
+          docker compose -f "$COMPOSE_FILE" ps
+          docker compose -f "$COMPOSE_FILE" logs --no-color --tail=200 backend || true
+
+      # Run lint/tests in a one-off container (works even if backend service is not running)
       - name: Run lint and tests
         run: |
-          docker compose -f "$COMPOSE_FILE" exec -T backend \
+          docker compose -f "$COMPOSE_FILE" run --rm -T backend \
             sh -c "flake8 && pytest -q"
 
       - name: Show logs on failure
