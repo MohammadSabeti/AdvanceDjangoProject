@@ -1,5 +1,6 @@
 import pytest
-from accounts.models import User, Profile
+
+from accounts.models import Profile, User
 
 
 @pytest.mark.django_db
@@ -18,7 +19,9 @@ class TestUserManager:
 
     def test_create_superuser_sets_required_flags(self):
         """create_superuser should set is_staff/is_superuser/is_active/is_verified = True."""
-        admin = User.objects.create_superuser(email="admin@test.com", password="Pass12345/")
+        admin = User.objects.create_superuser(
+            email="admin@test.com", password="Pass12345/"
+        )
         assert admin.is_staff is True
         assert admin.is_superuser is True
         assert admin.is_active is True

@@ -2,10 +2,10 @@ import pytest
 from django.urls import reverse
 from django.utils import timezone
 
-
 # ============================================================
 # API Tests (Behavior & Permissions)
 # ============================================================
+
 
 @pytest.mark.django_db
 class TestPostApi:

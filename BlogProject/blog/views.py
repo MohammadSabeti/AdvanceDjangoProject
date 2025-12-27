@@ -1,27 +1,21 @@
-from django.shortcuts import render
-from django.views.generic.base import TemplateView, RedirectView
-from django.views.generic import (
-    ListView,
-    DetailView,
-    FormView,
-    CreateView,
-    UpdateView,
-    DeleteView,
-)
-from django.http import HttpResponse
-from .models import Post
-from django.shortcuts import get_object_or_404
-from .forms import PostForm
 from django.contrib.auth.mixins import (
     LoginRequiredMixin,
-    PermissionRequiredMixin,
 )
-from rest_framework.decorators import api_view
-from rest_framework.response import Response
+from django.views.generic import (
+    CreateView,
+    DeleteView,
+    DetailView,
+    ListView,
+    UpdateView,
+)
+from django.views.generic.base import RedirectView, TemplateView
+from .forms import PostForm
+from .models import Post
+
 # Create your views here.
 
 # Function Base View show a template
-''' 
+'''
 def indexView(request):
     """
     a function based view to show index page
@@ -50,7 +44,6 @@ class IndexView(TemplateView):
 from django.shortcuts import redirect
 def redirectToMaktab(request):
     return redirect('https://maktabkhooneh.com')
-
 """
 
 
@@ -101,4 +94,3 @@ class PostEditView(LoginRequiredMixin, UpdateView):
 class PostDeleteView(LoginRequiredMixin, DeleteView):
     model = Post
     success_url = "/blog/post/"
-

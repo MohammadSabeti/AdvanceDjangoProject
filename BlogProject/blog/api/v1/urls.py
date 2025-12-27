@@ -1,21 +1,41 @@
-from django.urls import path, include
-from .views import *
+from django.urls import include, path
 from rest_framework.routers import DefaultRouter
 
+from .views import (
+    CategoryViewSet,
+    PostDetailAPIView,
+    PostDetailGenericAPIView,
+    PostListAPIView,
+    PostListGenericAPIView,
+    PostViewSet,
+    post_detail,
+    post_list,
+)
+
 router = DefaultRouter()
-router.register('post',PostViewSet)
-router.register('category',CategoryViewSet)
-app_name = 'api-v1'
+router.register("post", PostViewSet)
+router.register("category", CategoryViewSet)
+app_name = "api-v1"
 urlpatterns = [
     path("", include(router.urls)),
     path("post_fbv/", post_list, name="post_list_fbv"),
     path("post_fbv/<int:id>/", post_detail, name="post_detail_fbv"),
     path("post_api_view/", PostListAPIView.as_view(), name="post_list_api_view"),
-    path("post_api_view/<int:id>/", PostDetailAPIView.as_view(), name="post_detail_api_view"),
-    path("post_gen_api_view/", PostListGenericAPIView.as_view(), name="post_list_gen_api_view"),
-    path("post_gen_api_view/<int:id>/", PostDetailGenericAPIView.as_view(), name="post_detail_gen_api_view"),
-
-
+    path(
+        "post_api_view/<int:id>/",
+        PostDetailAPIView.as_view(),
+        name="post_detail_api_view",
+    ),
+    path(
+        "post_gen_api_view/",
+        PostListGenericAPIView.as_view(),
+        name="post_list_gen_api_view",
+    ),
+    path(
+        "post_gen_api_view/<int:id>/",
+        PostDetailGenericAPIView.as_view(),
+        name="post_detail_gen_api_view",
+    ),
 ]
 
 # urlpatterns=router.urls

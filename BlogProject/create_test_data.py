@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
-from django.utils import timezone
 from datetime import timedelta
 
-from accounts.models import User, Profile
+from django.utils import timezone
+
+from accounts.models import Profile, User
 from blog.models import Category, Post
 
 # =======================
@@ -26,10 +27,7 @@ users = []
 for email in user_emails:
     user = User.objects.filter(email=email).first()
     if not user:
-        user = User.objects.create_user(
-            email=email,
-            password="TestPass123!"
-        )
+        user = User.objects.create_user(email=email, password="TestPass123!")
     users.append(user)
 
 # =======================
@@ -37,16 +35,56 @@ for email in user_emails:
 # =======================
 
 profile_data = [
-    ("Alice", "Johnson", "Full-stack developer with a strong interest in Django and scalable backend systems."),
-    ("Bob", "Smith", "Frontend engineer focused on clean UI, accessibility, and modern JavaScript frameworks."),
-    ("Carol", "Davis", "Backend developer experienced in APIs, databases, and performance optimization."),
-    ("David", "Wilson", "DevOps enthusiast who enjoys automation, CI/CD pipelines, and cloud infrastructure."),
-    ("Emma", "Brown", "UI/UX designer passionate about human-centered design and product usability."),
-    ("Frank", "Miller", "Data scientist working with Python, machine learning models, and analytics."),
-    ("Grace", "Taylor", "Security researcher interested in web vulnerabilities and secure coding practices."),
-    ("Henry", "Anderson", "Mobile developer building cross-platform apps with a focus on performance."),
-    ("Irene", "Thomas", "Technical writer who simplifies complex engineering topics for developers."),
-    ("Jack", "Jackson", "Startup CTO with experience in leading engineering teams and system architecture."),
+    (
+        "Alice",
+        "Johnson",
+        "Full-stack developer with a strong interest in Django and scalable backend systems.",
+    ),
+    (
+        "Bob",
+        "Smith",
+        "Frontend engineer focused on clean UI, accessibility, and modern JavaScript frameworks.",
+    ),
+    (
+        "Carol",
+        "Davis",
+        "Backend developer experienced in APIs, databases, and performance optimization.",
+    ),
+    (
+        "David",
+        "Wilson",
+        "DevOps enthusiast who enjoys automation, CI/CD pipelines, and cloud infrastructure.",
+    ),
+    (
+        "Emma",
+        "Brown",
+        "UI/UX designer passionate about human-centered design and product usability.",
+    ),
+    (
+        "Frank",
+        "Miller",
+        "Data scientist working with Python, machine learning models, and analytics.",
+    ),
+    (
+        "Grace",
+        "Taylor",
+        "Security researcher interested in web vulnerabilities and secure coding practices.",
+    ),
+    (
+        "Henry",
+        "Anderson",
+        "Mobile developer building cross-platform apps with a focus on performance.",
+    ),
+    (
+        "Irene",
+        "Thomas",
+        "Technical writer who simplifies complex engineering topics for developers.",
+    ),
+    (
+        "Jack",
+        "Jackson",
+        "Startup CTO with experience in leading engineering teams and system architecture.",
+    ),
 ]
 
 profiles = []
@@ -166,7 +204,7 @@ for i, data in enumerate(posts_data):
             "status": data[2],
             "category": categories[i % len(categories)],
             "published_date": timezone.now() - timedelta(days=i),
-        }
+        },
     )
 
 print("✅ All test data created successfully.")

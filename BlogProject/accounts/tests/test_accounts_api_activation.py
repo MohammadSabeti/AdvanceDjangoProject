@@ -37,7 +37,9 @@ class TestActivationFlow:
         assert resp.status_code == 200
         assert "already" in str(resp.data).lower()
 
-    def test_activation_resend_nonexistent_user_returns_400(self, api_client, mock_email_thread_start):
+    def test_activation_resend_nonexistent_user_returns_400(
+        self, api_client, mock_email_thread_start
+    ):
         """Resend should return 400 if user does not exist."""
         url = reverse("accounts:api-v1:activation-resend")
 
@@ -46,7 +48,9 @@ class TestActivationFlow:
         assert resp.status_code == 400
         assert mock_email_thread_start["count"] == 0
 
-    def test_activation_resend_verified_user_returns_400(self, api_client, mock_email_thread_start):
+    def test_activation_resend_verified_user_returns_400(
+        self, api_client, mock_email_thread_start
+    ):
         """Resend should return 400 if user is already verified."""
         user = User.objects.create_user(email="v2@test.com", password="Pass12345/")
         user.is_verified = True
@@ -58,7 +62,9 @@ class TestActivationFlow:
         assert resp.status_code == 400
         assert mock_email_thread_start["count"] == 0
 
-    def test_activation_resend_unverified_user_sends_email_200(self, api_client, mock_email_thread_start):
+    def test_activation_resend_unverified_user_sends_email_200(
+        self, api_client, mock_email_thread_start
+    ):
         """Resend should send email for unverified user and return 200."""
         user = User.objects.create_user(email="u3@test.com", password="Pass12345/")
         assert user.is_verified is False

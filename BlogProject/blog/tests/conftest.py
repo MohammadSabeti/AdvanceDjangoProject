@@ -1,6 +1,6 @@
 import pytest
-from rest_framework.test import APIClient
 from django.utils import timezone
+from rest_framework.test import APIClient
 
 from accounts.models import User
 from blog.models import Category, Post
@@ -8,6 +8,7 @@ from blog.models import Category, Post
 # ============================================================
 # Fixtures (Arrange layer)
 # ============================================================
+
 
 @pytest.fixture
 def api_client():

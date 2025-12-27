@@ -1,4 +1,3 @@
-
 import pytest
 from django.urls import reverse
 from rest_framework.authtoken.models import Token
@@ -15,7 +14,9 @@ class TestRegistrationAndAuth:
     - JWT create/refresh/verify
     """
 
-    def test_registration_creates_user_and_sends_email(self, api_client, mock_email_thread_start):
+    def test_registration_creates_user_and_sends_email(
+        self, api_client, mock_email_thread_start
+    ):
         """
         Registration should:
         - create a user
@@ -23,7 +24,11 @@ class TestRegistrationAndAuth:
         - return 201 with {email: ...}
         """
         url = reverse("accounts:api-v1:registration")
-        payload = {"email": "new@test.com", "password": "Pass12345/", "password1": "Pass12345/"}
+        payload = {
+            "email": "new@test.com",
+            "password": "Pass12345/",
+            "password1": "Pass12345/",
+        }
 
         resp = api_client.post(url, payload, format="json")
 
@@ -32,10 +37,16 @@ class TestRegistrationAndAuth:
         assert User.objects.filter(email="new@test.com").exists()
         assert mock_email_thread_start["count"] == 1
 
-    def test_registration_password_mismatch_returns_400(self, api_client, mock_email_thread_start):
+    def test_registration_password_mismatch_returns_400(
+        self, api_client, mock_email_thread_start
+    ):
         """Registration should return 400 if passwords do not match."""
         url = reverse("accounts:api-v1:registration")
-        payload = {"email": "mismatch@test.com", "password": "Pass12345/", "password1": "Different12345/"}
+        payload = {
+            "email": "mismatch@test.com",
+            "password": "Pass12345/",
+            "password1": "Different12345/",
+        }
 
         resp = api_client.post(url, payload, format="json")
 
@@ -53,7 +64,10 @@ class TestRegistrationAndAuth:
         resp = api_client.post(url, payload, format="json")
 
         assert resp.status_code == 400
-        assert "Unable to log in" in str(resp.data) or "not verified" in str(resp.data).lower()
+        assert (
+            "Unable to log in" in str(resp.data)
+            or "not verified" in str(resp.data).lower()
+        )
 
     def test_token_login_verified_user_returns_token(self, api_client, verified_user):
         """
@@ -96,7 +110,9 @@ class TestRegistrationAndAuth:
         assert resp.status_code == 400
         assert "not verified" in str(resp.data).lower()
 
-    def test_jwt_create_verified_returns_access_refresh(self, api_client, verified_user):
+    def test_jwt_create_verified_returns_access_refresh(
+        self, api_client, verified_user
+    ):
         """
         Verified user should get access/refresh tokens and extra fields (email, user_id).
         """

@@ -15,15 +15,16 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 
-from django.contrib import admin
 from debug_toolbar.toolbar import debug_toolbar_urls
-from core import settings
 from django.conf.urls.static import static
-from django.urls import path, include
-from rest_framework.documentation import include_docs_urls
-from rest_framework import permissions
-from drf_yasg.views import get_schema_view
+from django.contrib import admin
+from django.urls import include, path
 from drf_yasg import openapi
+from drf_yasg.views import get_schema_view
+from rest_framework import permissions
+from rest_framework.documentation import include_docs_urls
+
+from core import settings
 
 # -----------------------------
 # OpenAPI Infos
@@ -63,37 +64,60 @@ schema_view_v2 = get_schema_view(
     patterns=[
         path("api/v2/", include("djoser.urls")),
         path("api/v2/", include("djoser.urls.jwt")),
-    ],)
+    ],
+)
 
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("api-auth/", include("rest_framework.urls")),
-    path("api-docs/", include_docs_urls(title='api sample')),
-
+    path("api-docs/", include_docs_urls(title="api sample")),
     # -----------------------------
     # API routes (versioned)
     # -----------------------------
     path("api/v1/accounts/", include("accounts.urls")),
     path("api/v1/blog/", include("blog.urls")),
-
     # v2 auth (djoser)
     path("api/v2/", include("djoser.urls")),
     path("api/v2/", include("djoser.urls.jwt")),
-
     # -----------------------------
     # Swagger / ReDoc (split by version)
     # -----------------------------
-    path("swagger/v1.json", schema_view_v1.without_ui(cache_timeout=0), name="schema-v1-json"),
-    path("swagger/v1/", schema_view_v1.with_ui("swagger", cache_timeout=0), name="schema-v1-swagger-ui"),
-    path("redoc/v1/", schema_view_v1.with_ui("redoc", cache_timeout=0), name="schema-v1-redoc"),
-
-    path("swagger/v2.json", schema_view_v2.without_ui(cache_timeout=0), name="schema-v2-json"),
-    path("swagger/v2/", schema_view_v2.with_ui("swagger", cache_timeout=0), name="schema-v2-swagger-ui"),
-    path("redoc/v2/", schema_view_v2.with_ui("redoc", cache_timeout=0), name="schema-v2-redoc"),
+    path(
+        "swagger/v1.json",
+        schema_view_v1.without_ui(cache_timeout=0),
+        name="schema-v1-json",
+    ),
+    path(
+        "swagger/v1/",
+        schema_view_v1.with_ui("swagger", cache_timeout=0),
+        name="schema-v1-swagger-ui",
+    ),
+    path(
+        "redoc/v1/",
+        schema_view_v1.with_ui("redoc", cache_timeout=0),
+        name="schema-v1-redoc",
+    ),
+    path(
+        "swagger/v2.json",
+        schema_view_v2.without_ui(cache_timeout=0),
+        name="schema-v2-json",
+    ),
+    path(
+        "swagger/v2/",
+        schema_view_v2.with_ui("swagger", cache_timeout=0),
+        name="schema-v2-swagger-ui",
+    ),
+    path(
+        "redoc/v2/",
+        schema_view_v2.with_ui("redoc", cache_timeout=0),
+        name="schema-v2-redoc",
+    ),
 ]
 
 # serving static and media for development
 if settings.DEBUG:
-    urlpatterns += (static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
-                    + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-                    + debug_toolbar_urls())
+    urlpatterns += (
+        static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+        + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+        + debug_toolbar_urls()
+    )

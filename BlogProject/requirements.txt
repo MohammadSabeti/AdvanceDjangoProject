@@ -21,3 +21,6 @@ djoser
 
 pytest
 pytest-django
+flake8
+black
+isort

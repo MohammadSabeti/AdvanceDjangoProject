@@ -1,6 +1,7 @@
 from rest_framework import permissions
 from rest_framework.permissions import BasePermission
 
+
 class IsOwnerOrReadonly(BasePermission):
     message = "You are not the owner of this post."
 

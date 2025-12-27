@@ -78,7 +78,9 @@ class CustomAutoSchema(SwaggerAutoSchema):
         if "RetrieveUpdateDestroy" in view_cls_name and method == "put":
             candidates = ["update"] + [c for c in candidates if c != "update"]
         if "RetrieveUpdateDestroy" in view_cls_name and method == "patch":
-            candidates = ["partial_update"] + [c for c in candidates if c != "partial_update"]
+            candidates = ["partial_update"] + [
+                c for c in candidates if c != "partial_update"
+            ]
         if "RetrieveUpdateDestroy" in view_cls_name and method == "delete":
             candidates = ["destroy"] + [c for c in candidates if c != "destroy"]
 

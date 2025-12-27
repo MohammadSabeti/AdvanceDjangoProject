@@ -3,10 +3,10 @@ from django.urls import reverse
 
 from blog.models import Category
 
-
 # ============================================================
 # API Tests (Behavior & Permissions)
 # ============================================================
+
 
 @pytest.mark.django_db
 class TestCategoryApi:
@@ -29,7 +29,8 @@ class TestCategoryApi:
 
         assert response.status_code == 200
 
-        # DefaultRouter list usually returns a list (no pagination unless configured globally)
+        # DefaultRouter list usually returns a list
+        # (no pagination unless configured globally)
         assert isinstance(response.data, list)
         assert any(item["name"] == category.name for item in response.data)
 
