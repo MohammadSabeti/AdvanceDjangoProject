@@ -24,3 +24,5 @@ pytest-django
 flake8
 black
 isort
+
+Faker
