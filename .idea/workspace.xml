@@ -4,12 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3ec5e726-6c18-4f7f-8cf6-64d7d25b3359" name="Changes" comment="chore: apply code formatting and linting with black, isort, and flake8&#10;&#10;- Auto-format all Python files using black (opinionated, consistent style)&#10;- Sort and group imports with isort for readability&#10;- Enforce code quality rules via flake8 (no syntax errors, PEP8 compliance)&#10;- Establish standardized code style for team collaboration and maintainability">
-      <change afterPath="$PROJECT_DIR$/BlogProject/blog/management/commands/insert_data.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/AdvanceDjangoProject.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/AdvanceDjangoProject.iml" afterDir="false" />
+    <list default="true" id="3ec5e726-6c18-4f7f-8cf6-64d7d25b3359" name="Changes" comment="feat(api): configure CORS headers and add external HTML test page&#10;&#10;- Install and configure django-cors-headers for cross-origin API access&#10;- Allow frontend origins (e.g., http://127.0.0.1:8052) in CORS_ALLOWED_ORIGINS&#10;- Create standalone HTML test page to verify CORS behavior in real browser&#10;- Include pagination, error handling, and visual feedback for API testing&#10;- Ensure API is ready for integration with external frontend applications">
+      <change afterPath="$PROJECT_DIR$/BlogProject/templates/blog/post_list_api_outside.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BlogProject/.devcontainer/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/BlogProject/.devcontainer/docker-compose.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BlogProject/blog/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/BlogProject/blog/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BlogProject/blog/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/BlogProject/blog/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BlogProject/core/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/BlogProject/core/settings.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BlogProject/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/BlogProject/requirements.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BlogProject/templates/blog/post_list_api.html" beforeDir="false" afterPath="$PROJECT_DIR$/BlogProject/templates/blog/post_list_api.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,6 +37,9 @@
     &quot;assignee&quot;: &quot;MohammadSabeti&quot;
   }
 }</component>
+  <component name="GithubDefaultAccount">
+    <option name="defaultAccountId" value="188c12ac-1145-4378-8b8f-ffb82b730211" />
+  </component>
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
     &quot;url&quot;: &quot;https://github.com/MohammadSabeti/AdvanceDjangoProject.git&quot;,
@@ -52,22 +57,22 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Django Server.AdvanceDjangoProject.executor&quot;: &quot;Run&quot;,
-    &quot;Django tests.Test: blog.tests.TestUrl.executor&quot;: &quot;Run&quot;,
-    &quot;Docker..devcontainer: Compose Deployment.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenDjangoStructureViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;last_opened_file_path&quot;: &quot;F:/Projects/NewLine/JadiPython/AdvanceDjangoProject/BlogProject/core/settings.py&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;com.intellij.python.django.customization.DjangoModulesConfigurable&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Django Server.AdvanceDjangoProject.executor": "Run",
+    "Django tests.Test: blog.tests.TestUrl.executor": "Run",
+    "Docker..devcontainer: Compose Deployment.executor": "Run",
+    "RunOnceActivity.OpenDjangoStructureViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "master",
+    "last_opened_file_path": "F:/Projects/NewLine/JadiPython/AdvanceDjangoProject/BlogProject/core/settings.py",
+    "node.js.detected.package.eslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "org.jetbrains.plugins.github.ui.GithubSettingsConfigurable"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="F:\Projects\NewLine\JadiPython\AdvanceDjangoProject" />
@@ -205,7 +210,8 @@
       <workItem from="1769240310477" duration="74000" />
       <workItem from="1770040711763" duration="925000" />
       <workItem from="1770205592395" duration="9507000" />
-      <workItem from="1770217617540" duration="8248000" />
+      <workItem from="1770217617540" duration="10345000" />
+      <workItem from="1770274868092" duration="12524000" />
     </task>
     <task id="LOCAL‎−۰۰۰۰۱" summary="feat: set up initial project structure&#10;&#10;- Create 'accounts' and 'blog' Django apps&#10;- Add Dockerfile and docker-compose.yml&#10;- Configure containerized development environment">
       <option name="closed" value="true" />
@@ -445,7 +451,14 @@
       <option name="presentableId" value="LOCAL‎−۰۰۰۳۴" />
       <updated>1766851124662</updated>
     </task>
-    <option name="localTasksCounter" value="35" />
+    <task id="LOCAL‎−۰۰۰۳۵" summary="feat(dev): add management command to generate realistic, seeded test data&#10;&#10;- Create 'insert_data' command using Faker with fixed SEED for reproducibility&#10;- Generate users, profiles, categories, and posts with meaningful content&#10;- Use get_or_create to avoid duplicates on re-run&#10;- Include descriptive output with counts for verification&#10;- Enable quick setup of development/staging environments with consistent data">
+      <option name="closed" value="true" />
+      <created>1770227119681</created>
+      <option name="number" value="LOCAL‎−۰۰۰۳۵" />
+      <option name="presentableId" value="LOCAL‎−۰۰۰۳۵" />
+      <updated>1770227119681</updated>
+    </task>
+    <option name="localTasksCounter" value="36" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -463,8 +476,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="feat(blog): implement and compare all DRF view patterns for Post API&#10;&#10;- Add FBV, APIView, generic views, and ModelViewSet for Post&#10;- Configure consistent permissions and validation across all views&#10;- Set up URL routing for each pattern under /api/v1/&#10;- Keep all view types for educational and architectural reference" />
-    <MESSAGE value="fix(docker): correct PostgresSQL volume mount path&#10;&#10;- Update volume path in docker-compose.yml to ensure stable DB persistence&#10;- Resolves permission or data-loss issues on container restart" />
     <MESSAGE value="feat(docs): add API documentation using DRF's built-in coreapi support&#10;&#10;- Install coreapi and update requirements.txt&#10;- Configure include_docs_urls under /api-docs/&#10;- Set documentation title to 'api sample'&#10;- Enable browsable, self-descriptive API reference for developers" />
     <MESSAGE value="feat(accounts): add get_full_name property to Profile model&#10;&#10;- Expose full name as a computed property on Profile" />
     <MESSAGE value="feat(blog): enhance Post API with dynamic serialization and hypermedia URLs&#10;&#10;- Add get_absolute_api_url to Post model for canonical API links&#10;- Implement CategorySerializer using ModelSerializer for JSON representation&#10;- Implement PostSerializer with context-aware output:&#10;  • Show brief_content in list, full content in detail&#10;  • Include relative/absolute URLs using request context&#10;- Auto-set author from authenticated user’s profile on create&#10;- Use SlugRelatedField for author and show author full name in output&#10;- Use SlugRelatedField for category and nested CategorySerializer in output&#10;- Register PostViewSet and CategoryViewSet with DefaultRouter&#10;- Add sample @action (get_ok) for future custom endpoints" />
@@ -488,7 +499,20 @@
     <MESSAGE value="feat(tests): migrate to pytest with custom configuration&#10;&#10;- Install pytest and pytest-django for modern, expressive test writing&#10;- Configure pytest.ini with Django settings and Python file pattern&#10;- Suppress known deprecation warnings from drf-yasg, coreapi, and dependencies&#10;- Prepare foundation for fixture-based, maintainable test suite" />
     <MESSAGE value="feat(tests): implement comprehensive end-to-end and unit tests for accounts and blog apps&#10;&#10;- Add API-level tests for authentication, registration, activation, and password flows&#10;- Cover Post and Category CRUD with permission and serialization logic&#10;- Verify profile management, user model, and token helpers&#10;- Separate unit tests (models, managers) from end-to-end API scenarios&#10;- Use pytest with clear class docstrings for test intent documentation" />
     <MESSAGE value="chore: apply code formatting and linting with black, isort, and flake8&#10;&#10;- Auto-format all Python files using black (opinionated, consistent style)&#10;- Sort and group imports with isort for readability&#10;- Enforce code quality rules via flake8 (no syntax errors, PEP8 compliance)&#10;- Establish standardized code style for team collaboration and maintainability" />
-    <option name="LAST_COMMIT_MESSAGE" value="chore: apply code formatting and linting with black, isort, and flake8&#10;&#10;- Auto-format all Python files using black (opinionated, consistent style)&#10;- Sort and group imports with isort for readability&#10;- Enforce code quality rules via flake8 (no syntax errors, PEP8 compliance)&#10;- Establish standardized code style for team collaboration and maintainability" />
+    <MESSAGE value="feat(dev): add management command to generate realistic, seeded test data&#10;&#10;- Create 'insert_data' command using Faker with fixed SEED for reproducibility&#10;- Generate users, profiles, categories, and posts with meaningful content&#10;- Use get_or_create to avoid duplicates on re-run&#10;- Include descriptive output with counts for verification&#10;- Enable quick setup of development/staging environments with consistent data" />
+    <MESSAGE value="feat(api): configure CORS headers and add external HTML test page&#10;&#10;- Install and configure django-cors-headers for cross-origin API access&#10;- Allow frontend origins (e.g., http://127.0.0.1:8052) in CORS_ALLOWED_ORIGINS&#10;- Create standalone HTML test page to verify CORS behavior in real browser&#10;- Include pagination, error handling, and visual feedback for API testing&#10;- Ensure API is ready for integration with external frontend applications" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat(api): configure CORS headers and add external HTML test page&#10;&#10;- Install and configure django-cors-headers for cross-origin API access&#10;- Allow frontend origins (e.g., http://127.0.0.1:8052) in CORS_ALLOWED_ORIGINS&#10;- Create standalone HTML test page to verify CORS behavior in real browser&#10;- Include pagination, error handling, and visual feedback for API testing&#10;- Ensure API is ready for integration with external frontend applications" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/BlogProject/blog/models.py</url>
+          <line>23</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/AdvanceDjangoProject$Test__blog_tests_TestUrl.coverage" NAME="Test: blog.tests.TestUrl Coverage Results" MODIFIED="1766411654529" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />

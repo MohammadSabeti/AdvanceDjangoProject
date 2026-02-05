@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>API Test – Blog Posts</title>
+  <style>
+    :root{
+      --bg:#0b1020;
+      --card:#121a33;
+      --text:#e7ecff;
+      --muted:#aab4e0;
+      --border:rgba(255,255,255,.10);
+      --btn:#2b3a77;
+      --btn2:#1f2a57;
+      --danger:#ff6b6b;
+      --ok:#32d583;
+      --shadow: 0 12px 40px rgba(0,0,0,.35);
+      --radius:14px;
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+    }
+
+    *{ box-sizing:border-box; }
+    body{
+      margin:0;
+      font-family:var(--sans);
+      background:
+        radial-gradient(1200px 500px at 10% 10%, rgba(93,113,255,.25), transparent 60%),
+        radial-gradient(900px 400px at 90% 20%, rgba(50,213,131,.18), transparent 55%),
+        var(--bg);
+      color:var(--text);
+      min-height:100vh;
+      padding:32px 16px;
+    }
+
+    .container{
+      max-width:900px;
+      margin:0 auto;
+    }
+
+    .header{
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:16px;
+      margin-bottom:18px;
+    }
+
+    h1{
+      font-size:22px;
+      margin:0 0 6px 0;
+      letter-spacing:.2px;
+    }
+    .subtitle{
+      margin:0;
+      color:var(--muted);
+      line-height:1.6;
+    }
+
+    .card{
+      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+      border:1px solid var(--border);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      padding:18px 18px;
+    }
+
+    .guide{
+      display:grid;
+      gap:10px;
+      margin:14px 0 18px;
+    }
+
+    .code{
+      font-family:var(--mono);
+      background: rgba(255,255,255,.06);
+      border:1px solid var(--border);
+      padding:10px 12px;
+      border-radius:12px;
+      overflow:auto;
+      color:#dce2ff;
+    }
+
+    .row{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      align-items:center;
+      justify-content:space-between;
+      margin-top:10px;
+    }
+
+    .pill{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid var(--border);
+      background: rgba(255,255,255,.04);
+      color:var(--muted);
+      font-size:12px;
+      white-space:nowrap;
+    }
+
+    .dot{
+      width:9px;
+      height:9px;
+      border-radius:50%;
+      background: var(--muted);
+      display:inline-block;
+    }
+    .dot.ok{ background: var(--ok); }
+    .dot.err{ background: var(--danger); }
+
+    h3{
+      margin:0 0 12px 0;
+      font-size:16px;
+      color:#dbe3ff;
+      letter-spacing:.2px;
+    }
+
+    ol{
+      margin:0;
+      padding-left:18px;
+      display:grid;
+      gap:10px;
+    }
+
+    li{
+      padding:12px 12px;
+      border:1px solid var(--border);
+      border-radius:12px;
+      background: rgba(255,255,255,.03);
+      transition: transform .12s ease, background .12s ease;
+    }
+    li:hover{
+      transform: translateY(-1px);
+      background: rgba(255,255,255,.045);
+    }
+
+    a{
+      color:#cfe0ff;
+      text-decoration:none;
+    }
+    a:hover{ text-decoration:underline; }
+
+    .meta{
+      color:var(--muted);
+      font-size:12px;
+      margin-top:6px;
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+    }
+
+    .controls{
+      display:flex;
+      gap:10px;
+      margin-top:16px;
+    }
+
+    button{
+      cursor:pointer;
+      border:none;
+      border-radius:12px;
+      padding:10px 12px;
+      color:var(--text);
+      background: linear-gradient(180deg, rgba(43,58,119,.95), rgba(31,42,87,.95));
+      border:1px solid rgba(255,255,255,.12);
+      transition: transform .1s ease, opacity .1s ease, background .1s ease;
+      font-weight:600;
+    }
+    button:hover{ transform: translateY(-1px); }
+    button:disabled{
+      opacity:.45;
+      cursor:not-allowed;
+      transform:none;
+    }
+
+    .status{
+      margin-top:14px;
+      font-size:13px;
+      color:var(--muted);
+      display:flex;
+      align-items:center;
+      gap:10px;
+      min-height:20px;
+    }
+
+    .spinner{
+      width:14px;
+      height:14px;
+      border-radius:50%;
+      border:2px solid rgba(255,255,255,.25);
+      border-top-color: rgba(255,255,255,.85);
+      animation: spin 0.8s linear infinite;
+      display:none;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    .footer-note{
+      margin-top:14px;
+      color:var(--muted);
+      font-size:12px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <div>
+        <h1>API Test – Blog Posts (Outside Django Service)</h1>
+        <p class="subtitle">
+          This page simulates a frontend served from a different origin (port <b>8052</b>) calling the Django API (port <b>8000</b>).
+        </p>
+      </div>
+      <span class="pill" id="origin-pill"><span class="dot" id="origin-dot"></span> Origin: <span id="origin-text"></span></span>
+    </div>
+
+    <div class="card guide">
+      <h3>How to run</h3>
+      <div>
+        <div class="subtitle">1) Start a static server in this HTML folder:</div>
+        <div class="code">python -m http.server 8052</div>
+      </div>
+      <div>
+        <div class="subtitle">2) Open this page in your browser:</div>
+        <div class="code" id="open-url">http://127.0.0.1:8052/</div>
+      </div>
+      <div class="row">
+        <span class="pill"><span class="dot ok"></span> Django API: <span class="code" style="padding:4px 8px; display:inline-block;">http://127.0.0.1:8000/api/v1/blog/post/</span></span>
+        <span class="pill" id="api-pill"><span class="dot" id="api-dot"></span> API Status: <span id="api-status">unknown</span></span>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>Blog posts</h3>
+      <ol id="post-wrapper"></ol>
+
+      <div class="controls">
+        <button id="prev-btn" disabled>⬅ Previous</button>
+        <button id="next-btn" disabled>Next ➡</button>
+      </div>
+
+      <div class="status">
+        <div class="spinner" id="spinner"></div>
+        <div id="status-text">Ready.</div>
+      </div>
+
+      <div class="footer-note">
+        Tip: If you see a CORS error, make sure Django allows <span class="code" style="padding:2px 6px;">http://127.0.0.1:8052</span> in <span class="code" style="padding:2px 6px;">CORS_ALLOWED_ORIGINS</span>.
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script>
+    let currentUrl = 'http://127.0.0.1:8000/api/v1/blog/post/';
+
+    function setLoading(isLoading) {
+      $('#spinner').css('display', isLoading ? 'inline-block' : 'none');
+      $('#prev-btn, #next-btn').prop('disabled', isLoading);
+    }
+
+    function setStatus(text, isError=false) {
+      $('#status-text').text(text);
+      const dot = $('#api-dot');
+      $('#api-status').text(isError ? 'error' : 'ok');
+      dot.removeClass('ok err');
+      dot.addClass(isError ? 'err' : 'ok');
+    }
+
+    function loadPosts(url) {
+      setLoading(true);
+      setStatus('Loading posts...');
+
+      $.get(url)
+        .done(function (data) {
+          const wrapper = $('#post-wrapper');
+          wrapper.empty();
+
+          if (!data.results || data.results.length === 0) {
+            wrapper.append('<li>No posts found.</li>');
+          } else {
+            for (const post of data.results) {
+              wrapper.append(`
+                <li>
+                  <a href="${post.absolute_url}" target="_blank" rel="noopener">
+                    <strong>${post.title}</strong>
+                  </a>
+                  <div class="meta">
+                    <span>Category: ${post.category?.name ?? '-'}</span>
+                    <span>Author: ${post.author ?? '-'}</span>
+                    <span>Status: ${post.status ? 'Published' : 'Draft'}</span>
+                  </div>
+                </li>
+              `);
+            }
+          }
+
+          // pagination
+          currentUrl = url;
+
+          $('#next-btn').data('url', data.links?.next || null);
+          $('#prev-btn').data('url', data.links?.previous || null);
+
+          $('#next-btn').prop('disabled', !data.links?.next);
+          $('#prev-btn').prop('disabled', !data.links?.previous);
+
+          setStatus(`Loaded ${data.results.length} posts. Total objects: ${data.total_objects} | Total pages: ${data.total_pages}`);
+        })
+        .fail(function (jqXHR) {
+          const msg =
+            jqXHR.status
+              ? `Request failed (HTTP ${jqXHR.status}). Check Django server/CORS.`
+              : `Request failed (no response). Is Django running on port 8000?`;
+
+          setStatus(msg, true);
+          $('#post-wrapper').empty().append(`<li style="border-color: rgba(255,107,107,.35);">❌ ${msg}</li>`);
+          $('#next-btn, #prev-btn').prop('disabled', true);
+        })
+        .always(function () {
+          setLoading(false);
+        });
+    }
+
+    // button events
+    $('#next-btn').on('click', function () {
+      const url = $(this).data('url');
+      if (url) loadPosts(url);
+    });
+
+    $('#prev-btn').on('click', function () {
+      const url = $(this).data('url');
+      if (url) loadPosts(url);
+    });
+
+    // show origin + open-url hints
+    (function init() {
+      const origin = window.location.origin || 'file:// (not recommended)';
+      $('#origin-text').text(origin);
+      $('#open-url').text('http://127.0.0.1:8052/');
+
+      // origin indicator
+      const dot = $('#origin-dot');
+      if (origin.includes('8052')) dot.addClass('ok'); else dot.addClass('err');
+
+      // initial load
+      loadPosts(currentUrl);
+    })();
+  </script>
+</body>
+</html>

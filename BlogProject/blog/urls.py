@@ -16,6 +16,7 @@ urlpatterns = [
         views.PostDetailView.as_view(),
         name="post-detail-tmp",
     ),
+    path("simpale-api/", views.PostListAPIView.as_view(), name="post-api-tmp"),
     path("post/create/", views.PostCreateView.as_view(), name="post-create-tmp"),
     path(
         "post/<int:pk>/edit/",
