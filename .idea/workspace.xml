@@ -4,14 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3ec5e726-6c18-4f7f-8cf6-64d7d25b3359" name="Changes" comment="feat(api): configure CORS headers and add external HTML test page&#10;&#10;- Install and configure django-cors-headers for cross-origin API access&#10;- Allow frontend origins (e.g., http://127.0.0.1:8052) in CORS_ALLOWED_ORIGINS&#10;- Create standalone HTML test page to verify CORS behavior in real browser&#10;- Include pagination, error handling, and visual feedback for API testing&#10;- Ensure API is ready for integration with external frontend applications">
-      <change afterPath="$PROJECT_DIR$/BlogProject/templates/blog/post_list_api_outside.html" afterDir="false" />
+    <list default="true" id="3ec5e726-6c18-4f7f-8cf6-64d7d25b3359" name="Changes" comment="feat(perf): add Locust-based load testing with Dockerized master/worker setup&#10;&#10;- Configure Locust in docker-compose with master and scalable workers&#10;- Implement realistic user behavior: login, browse posts, create content&#10;- Include warm-up phase to preload categories and post IDs&#10;- Add proper error handling and response validation in locustfile&#10;- Verify API stability under load with acceptable performance metrics">
+      <change afterPath="$PROJECT_DIR$/BlogProject/load_tests/locustfile.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BlogProject/blog/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/BlogProject/blog/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BlogProject/blog/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/BlogProject/blog/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BlogProject/core/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/BlogProject/core/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BlogProject/.devcontainer/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/BlogProject/.devcontainer/docker-compose.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BlogProject/blog/api/v1/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/BlogProject/blog/api/v1/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BlogProject/core/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/BlogProject/core/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BlogProject/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/BlogProject/requirements.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BlogProject/templates/blog/post_list_api.html" beforeDir="false" afterPath="$PROJECT_DIR$/BlogProject/templates/blog/post_list_api.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,22 +56,22 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Django Server.AdvanceDjangoProject.executor": "Run",
-    "Django tests.Test: blog.tests.TestUrl.executor": "Run",
-    "Docker..devcontainer: Compose Deployment.executor": "Run",
-    "RunOnceActivity.OpenDjangoStructureViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "master",
-    "last_opened_file_path": "F:/Projects/NewLine/JadiPython/AdvanceDjangoProject/BlogProject/core/settings.py",
-    "node.js.detected.package.eslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "org.jetbrains.plugins.github.ui.GithubSettingsConfigurable"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Django Server.AdvanceDjangoProject.executor&quot;: &quot;Run&quot;,
+    &quot;Django tests.Test: blog.tests.TestUrl.executor&quot;: &quot;Run&quot;,
+    &quot;Docker..devcontainer: Compose Deployment.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenDjangoStructureViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;last_opened_file_path&quot;: &quot;F:/Projects/NewLine/JadiPython/AdvanceDjangoProject/BlogProject/core/settings.py&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="F:\Projects\NewLine\JadiPython\AdvanceDjangoProject" />
@@ -211,7 +210,11 @@
       <workItem from="1770040711763" duration="925000" />
       <workItem from="1770205592395" duration="9507000" />
       <workItem from="1770217617540" duration="10345000" />
-      <workItem from="1770274868092" duration="12524000" />
+      <workItem from="1770274868092" duration="21568000" />
+      <workItem from="1770535147665" duration="1627000" />
+      <workItem from="1770644033451" duration="3000" />
+      <workItem from="1770810626925" duration="9456000" />
+      <workItem from="1770821247133" duration="6783000" />
     </task>
     <task id="LOCAL‎−۰۰۰۰۱" summary="feat: set up initial project structure&#10;&#10;- Create 'accounts' and 'blog' Django apps&#10;- Add Dockerfile and docker-compose.yml&#10;- Configure containerized development environment">
       <option name="closed" value="true" />
@@ -458,7 +461,14 @@
       <option name="presentableId" value="LOCAL‎−۰۰۰۳۵" />
       <updated>1770227119681</updated>
     </task>
-    <option name="localTasksCounter" value="36" />
+    <task id="LOCAL‎−۰۰۰۳۶" summary="feat(api): configure CORS headers and add external HTML test page&#10;&#10;- Install and configure django-cors-headers for cross-origin API access&#10;- Allow frontend origins (e.g., http://127.0.0.1:8052) in CORS_ALLOWED_ORIGINS&#10;- Create standalone HTML test page to verify CORS behavior in real browser&#10;- Include pagination, error handling, and visual feedback for API testing&#10;- Ensure API is ready for integration with external frontend applications">
+      <option name="closed" value="true" />
+      <created>1770288509828</created>
+      <option name="number" value="LOCAL‎−۰۰۰۳۶" />
+      <option name="presentableId" value="LOCAL‎−۰۰۰۳۶" />
+      <updated>1770288509828</updated>
+    </task>
+    <option name="localTasksCounter" value="37" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -476,7 +486,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="feat(docs): add API documentation using DRF's built-in coreapi support&#10;&#10;- Install coreapi and update requirements.txt&#10;- Configure include_docs_urls under /api-docs/&#10;- Set documentation title to 'api sample'&#10;- Enable browsable, self-descriptive API reference for developers" />
     <MESSAGE value="feat(accounts): add get_full_name property to Profile model&#10;&#10;- Expose full name as a computed property on Profile" />
     <MESSAGE value="feat(blog): enhance Post API with dynamic serialization and hypermedia URLs&#10;&#10;- Add get_absolute_api_url to Post model for canonical API links&#10;- Implement CategorySerializer using ModelSerializer for JSON representation&#10;- Implement PostSerializer with context-aware output:&#10;  • Show brief_content in list, full content in detail&#10;  • Include relative/absolute URLs using request context&#10;- Auto-set author from authenticated user’s profile on create&#10;- Use SlugRelatedField for author and show author full name in output&#10;- Use SlugRelatedField for category and nested CategorySerializer in output&#10;- Register PostViewSet and CategoryViewSet with DefaultRouter&#10;- Add sample @action (get_ok) for future custom endpoints" />
     <MESSAGE value="feat(blog): enhance Post API with pagination, filtering, search, and object-level permissions&#10;&#10;- Implement custom PostPagination with metadata (total pages, count, links)&#10;- Add IsOwnerOrReadonly permission: only post owner can edit/delete&#10;- Enable filtering via django-filter (category, author, status with 'in'/'exact')&#10;- Add full-text search on title/content and ordering by published_date&#10;- Configure all features in PostViewSet with proper security and usability" />
@@ -501,7 +510,8 @@
     <MESSAGE value="chore: apply code formatting and linting with black, isort, and flake8&#10;&#10;- Auto-format all Python files using black (opinionated, consistent style)&#10;- Sort and group imports with isort for readability&#10;- Enforce code quality rules via flake8 (no syntax errors, PEP8 compliance)&#10;- Establish standardized code style for team collaboration and maintainability" />
     <MESSAGE value="feat(dev): add management command to generate realistic, seeded test data&#10;&#10;- Create 'insert_data' command using Faker with fixed SEED for reproducibility&#10;- Generate users, profiles, categories, and posts with meaningful content&#10;- Use get_or_create to avoid duplicates on re-run&#10;- Include descriptive output with counts for verification&#10;- Enable quick setup of development/staging environments with consistent data" />
     <MESSAGE value="feat(api): configure CORS headers and add external HTML test page&#10;&#10;- Install and configure django-cors-headers for cross-origin API access&#10;- Allow frontend origins (e.g., http://127.0.0.1:8052) in CORS_ALLOWED_ORIGINS&#10;- Create standalone HTML test page to verify CORS behavior in real browser&#10;- Include pagination, error handling, and visual feedback for API testing&#10;- Ensure API is ready for integration with external frontend applications" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat(api): configure CORS headers and add external HTML test page&#10;&#10;- Install and configure django-cors-headers for cross-origin API access&#10;- Allow frontend origins (e.g., http://127.0.0.1:8052) in CORS_ALLOWED_ORIGINS&#10;- Create standalone HTML test page to verify CORS behavior in real browser&#10;- Include pagination, error handling, and visual feedback for API testing&#10;- Ensure API is ready for integration with external frontend applications" />
+    <MESSAGE value="feat(perf): add Locust-based load testing with Dockerized master/worker setup&#10;&#10;- Configure Locust in docker-compose with master and scalable workers&#10;- Implement realistic user behavior: login, browse posts, create content&#10;- Include warm-up phase to preload categories and post IDs&#10;- Add proper error handling and response validation in locustfile&#10;- Verify API stability under load with acceptable performance metrics" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat(perf): add Locust-based load testing with Dockerized master/worker setup&#10;&#10;- Configure Locust in docker-compose with master and scalable workers&#10;- Implement realistic user behavior: login, browse posts, create content&#10;- Include warm-up phase to preload categories and post IDs&#10;- Add proper error handling and response validation in locustfile&#10;- Verify API stability under load with acceptable performance metrics" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
